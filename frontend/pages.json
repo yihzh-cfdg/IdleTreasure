@@ -4,6 +4,14 @@
 		"style": {
 			"navigationBarTitleText": "uni-app"
 		}
+	},
+	{
+		"path" : "search/search",
+		"style" : 
+		{
+			"navigationBarTitleText" : "",
+			"enablePullDownRefresh" : false
+		}
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
