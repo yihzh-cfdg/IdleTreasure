@@ -24,6 +24,14 @@
 			 "backgroundColor": "#9CEBFF"
 				
 		}
+	},
+	{
+		"path" : "pages/product-details/product-details",
+		"style" : 
+		{
+			"navigationBarTitleText" : "",
+			"enablePullDownRefresh" : false
+		}
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
