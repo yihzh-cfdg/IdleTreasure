@@ -9,7 +9,7 @@
 		"path" : "pages/search/search",
 		"style" : 
 		{
-			"navigationBarTitleText" : "",
+			"navigationStyle": "custom",
 			"enablePullDownRefresh" : false
 		}
 	},
@@ -23,6 +23,14 @@
 			"navigationStyle": "custom",
 			 "backgroundColor": "#9CEBFF"
 				
+		}
+	},
+	{
+		"path" : "pages/release/release",
+		"style" : 
+		{
+			"navigationStyle": "custom",
+			"enablePullDownRefresh" : false
 		}
 	}],
 	"globalStyle": {
