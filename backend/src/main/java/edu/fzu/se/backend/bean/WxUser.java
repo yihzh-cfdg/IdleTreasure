@@ -12,13 +12,11 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("Users")
 public class WxUser {
-    @TableId(type = IdType.AUTO)
     private Long User_ID;
     private String User_Name;
     private String User_Key;
     private String FZU_Key;
     private String Head_Portrait;
-    private String statue;
+    private String Delivery_Address;
 }
