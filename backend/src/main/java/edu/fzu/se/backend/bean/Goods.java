@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("Goods")
+@TableName("goods")
 public class Goods {
     @TableId(type = IdType.AUTO)
     private Long Goods_ID;
