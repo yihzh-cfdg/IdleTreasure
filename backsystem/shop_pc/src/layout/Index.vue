@@ -4,7 +4,10 @@
         <Menu></Menu>
       </el-aside>
       <el-container>
-        <el-header class="header">Header</el-header>
+        <el-header class="header">
+          <Collapse></Collapse>
+          <BreadCrumb></BreadCrumb>
+        </el-header>
         <el-main class="main">
           <router-view></router-view>
         </el-main>
@@ -13,6 +16,8 @@
   </template>
   <script setup lang="ts">
   import Menu from './Menu.vue';
+  import Collapse from './Collapse.vue'; 
+  import BreadCrumb from './BreadCrumb.vue';
   </script>
   <style lang="scss">
   .layout {
@@ -22,6 +27,9 @@
     }
     .header {
       background-color: rgb(134, 209, 237);
+      color: white;
+      display: flex;
+      align-items: center;
     }
     .main {
       background-color: #fff;
