@@ -12,19 +12,19 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("favorites")
-@Schema(name = "Favorites", description = "收藏夹")
-public class Favorites {
+@TableName("images")
+@Schema(name = "Images", description = "图片")
+public class Images {
     @TableId(type = IdType.AUTO)
-    @Schema(name = "Favorite_ID", description = "收藏ID")
-    private Long Favorite_ID;
+    @Schema(name = "Image_ID", description = "图片ID")
+    private Long Image_ID;
 
-    @Schema(name = "User_ID", description = "用户ID")
-    private Long User_ID;
+    @Schema(name = "Image_Name", description = "图片名称")
+    private String Image_Name;
 
-    @Schema(name = "Goods_ID", description = "商品ID")
-    private Long Goods_ID;
+    @Schema(name = "Image_Data", description = "图片数据")
+    private String Image_Data;
 
-    @Schema(name = "Insert_Time", description = "插入时间")
-    private String Insert_Time;
+    @Schema(name = "Image_Class", description = "图片分类")
+    private String Image_Class;
 }
