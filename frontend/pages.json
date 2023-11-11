@@ -44,6 +44,14 @@
 				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/check/check",
+			"style" : 
+			{
+				"navigationStyle": "custom",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
