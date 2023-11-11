@@ -13,7 +13,12 @@ import java.util.List;
 public interface TradesMapper {
     @Select("SELECT * FROM Trades")
     List<Trades> selectAll();
-    
+    //新增按交易ID查询、按买家和卖家ID查询（查询该买家向同一位卖家进行的交易记录）
+    @Select("SELECT * FROM Trades WHERE Trade_ID = #{tradeId}")
+    Trades selectById(Long tradeId);
+
+    @Select("SELECT * FROM Trades WHERE Buyer_ID = #{buyerId} AND Seller_ID = #{sellerId}")
+    List<Trades> selectByBuyerAndSellerIds(Long buyerId, Long sellerId);
     @Delete("DELETE FROM Trades WHERE Trade_ID=#{tradeId}")
     int deleteById(Long tradeId);
     

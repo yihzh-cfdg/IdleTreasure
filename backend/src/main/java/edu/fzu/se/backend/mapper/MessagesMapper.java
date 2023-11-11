@@ -12,6 +12,12 @@ import java.util.List;
 public interface MessagesMapper {
     @Select("SELECT * FROM Messages")
     List<Messages> selectAll();
+    //新增按消息ID查询、按发送者和接收者ID查询（查询一位用户对另一位用户的消息记录）
+    @Select("SELECT * FROM Messages WHERE Message_ID = #{messageId}")
+    Messages selectById(Long messageId);
+
+    @Select("SELECT * FROM Messages WHERE Sender_ID = #{senderId} AND Receiver_ID = #{receiverId}")
+    List<Messages> selectBySenderAndReceiverIds(Long senderId, Long receiverId);
 
     @Delete("DELETE FROM Messages WHERE Message_ID=#{messageId}")
     int deleteById(Long messageId);
