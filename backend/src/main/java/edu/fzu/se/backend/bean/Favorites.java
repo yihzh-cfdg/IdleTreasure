@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("Favorites")
+@TableName("favorites")
 public class Favorites {
     @TableId(type = IdType.AUTO)
     private Long Favorite_ID;
     private Long User_ID;
-    private Long Goods_ID;
+    private Long Good_ID;
     private String Insert_Time;
 }
