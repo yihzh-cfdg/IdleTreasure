@@ -69,7 +69,11 @@
 					
 					<view class="image-list">
 					<!-- 商品图片列表 -->	
-					    <image v-for="(image, index) in imageList" :key="index" :src="image" class="evaluate-image" />
+					    <image v-for="(image, index) in imageList" 
+						:key="index" 
+						:src="image" 
+						class="evaluate-image" 
+						@click="previewImage(index)"/>
 					  </view>
 					
 					<view>
@@ -137,7 +141,14 @@
 			        } else {
 			          return '不满';
 			        }
-			      }
+			      },
+			// 点击预览图片
+			  previewImage(index) {
+			    uni.previewImage({
+			      current: this.imageList[index],
+			      urls: this.imageList 
+			    });
+			  }	  
 		}
 	};
 </script>
