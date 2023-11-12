@@ -38,51 +38,61 @@
 			}
 		},
 		{
-			"path" : "pages/shopping-cart/shopping-cart",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/shopping-cart/shopping-cart",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/check/check",
-			"style" : 
-			{
+			"path": "pages/check/check",
+			"style": {
 				"navigationStyle": "custom",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/set/set-list",
-			"style" : 
-			{
-				"navigationStyle": "custom",
-				"enablePullDownRefresh" : false
+			"path": "pages/evaluate/evaluate",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path" : "pages/set/info-set",
-			"style" : 
-			{
-				"navigationStyle": "custom",
-				"enablePullDownRefresh" : false
+			"path": "pages/evaluate-details/evaluate-details",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path" : "pages/set/address-set",
-			"style" : 
-			{
+			"path": "pages/set/set-list",
+			"style": {
 				"navigationStyle": "custom",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/set/about",
-			"style" : 
-			{
+			"path": "pages/set/info-set",
+			"style": {
 				"navigationStyle": "custom",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/set/address-set",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/set/about",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
 			}
 		}
 	],
