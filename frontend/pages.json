@@ -52,6 +52,38 @@
 				"navigationStyle": "custom",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/set/set-list",
+			"style" : 
+			{
+				"navigationStyle": "custom",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/set/info-set",
+			"style" : 
+			{
+				"navigationStyle": "custom",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/set/address-set",
+			"style" : 
+			{
+				"navigationStyle": "custom",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/set/about",
+			"style" : 
+			{
+				"navigationStyle": "custom",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

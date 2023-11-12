@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="navigation-bar">
 		<!-- 导航栏 -->
-			<uni-nav-bar dark :fixed="true"  background-color="#f5f5f5" status-bar left-width="250rpx" right-width="160rpx">
+			<uni-nav-bar dark background-color="#f5f5f5" status-bar left-width="250rpx" right-width="160rpx">
 				<block slot="left">
 					<uni-icons  @click="goBack()" class="back-icons" size="20" type="back"></uni-icons>
 					<text class="navi-header-text" style="font-size:1.15em" >商品发布</text>
