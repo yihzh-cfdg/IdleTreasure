@@ -9,7 +9,7 @@
 		</uni-nav-bar>
 		
 		<!--商品相关-->
-		<view class="product-info":is-shadow="false" is-full v-for="(product, index) in products" :key="index">
+		<view class="product-info" v-for="(product, index) in products" :key="index">
 			<!--商品图片-->
 			<image class="product-image" :src="product.image" />
 			<!--其他信息：商品名；商品价格-->
