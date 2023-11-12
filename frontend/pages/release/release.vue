@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="navigation-bar">
 		<!-- 导航栏 -->
-			<uni-nav-bar dark :fixed="true"  background-color="#f5f5f5" status-bar left-width="250rpx" right-width="160rpx">
+			<uni-nav-bar dark background-color="#f5f5f5" status-bar left-width="250rpx" right-width="160rpx">
 				<block slot="left">
 					<uni-icons  @click="goBack()" class="back-icons" size="20" type="back"></uni-icons>
 					<text class="navi-header-text" style="font-size:1.15em" >商品发布</text>
@@ -35,8 +35,6 @@
 		    <uni-popup-dialog mode="input" title="请输入价格" :value="price" :before-close="true" @close="closePriceInput" @confirm="confirmPriceInput" />
 		</uni-popup>
 	</view>
-	
-	
 
 </template>
 
@@ -50,8 +48,8 @@
 				//图片格式
 				imageStyles:{
 					border:{
-						width:1,
-						radius:'10px'
+						radius:'10px',
+						
 					}
 				},
 			};
@@ -94,19 +92,12 @@
 	.release-body{
 		background-color: #ffffff;
 		border-radius: 5px;
-		width: 100%;
+		padding: 10px;
+		margin-bottom: 5px;
 
 	}
 	.navi-header-text{
 		color: #000;
 		/* 商品发布文字颜色 */
 	}
-	.input-with-picture{
-		padding-bottom: 20rpx;
-		margin: 5px;
-	}
-	.input-info{
-		padding: 5px;
-	}
-
 </style>
