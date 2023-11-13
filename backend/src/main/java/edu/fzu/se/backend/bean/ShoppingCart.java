@@ -1,5 +1,4 @@
 package edu.fzu.se.backend.bean;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -11,12 +10,15 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("goods_images_conns")
-@Schema(name = "Goods_Images_Conns", description = "商品图片连接")
-public class Goods_Images_Conns {
-    @Schema(name = "Goods_ID", description = "商品ID")
+@TableName("shoppingcart")
+@Schema(description = "购物车")
+public class ShoppingCart {
+    @Schema(name = "User_ID",description = "用户ID")
+    private Long User_ID;
+
+    @Schema(name = "Goods_ID",description = "商品ID")
     private Long Goods_ID;
 
-    @Schema(name = "Image_ID", description = "图片ID")
-    private Long Image_ID;
+    @Schema(name = "Count",description = "商品数量")
+    private Integer Count;
 }
