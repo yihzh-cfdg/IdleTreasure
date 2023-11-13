@@ -1,26 +1,4 @@
 <template>
-	<view>
-		
-	</view>
-</template>
-
-<script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
-</script>
-
-<style>
-
-</style>
-<template>
   <view class="container">
 	  <!--顶部导航栏-->
 	  <view class="box-bg">
@@ -62,7 +40,10 @@
 			<!--商品信息-->
 			<h3 class="product-price">{{ productPrice }}</h3>
 			<p class="product-info">{{ productInfo }}</p>
-			<img :src="productImage" alt="商品图片" class="product-image">
+			<view class="image-list">
+			    <!-- 商品图片列表 -->
+			    <image v-for="(image, index) in imageList" :key="index" :src="image" class="product-image" />
+			  </view>
 	  
     </view>
     
@@ -88,7 +69,12 @@ export default {
       userName: '爱吃的丸子',
       productPrice: '￥25.8',
       productInfo: '备考2023星火英语四六级词汇必备大乱序版大学英语速记词汇书',
-      productImage: '../../static/book.png',
+	  imageList: [
+	          '../../static/book.png',
+	          '../../static/book.png',
+	          '../../static/book.png',
+	          // 其他商品图片地址
+	        ],
 	  options: [{
 	  			icon: 'star',
 	  			text: '收藏'
