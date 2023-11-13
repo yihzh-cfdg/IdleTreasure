@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("shoppingcart")
-@Schema(description = "购物车")
+@Schema(name= "ShoppingCart",description = "购物车")
 public class ShoppingCart {
     @Schema(name = "User_ID",description = "用户ID")
     private Long User_ID;
