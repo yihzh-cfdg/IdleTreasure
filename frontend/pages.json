@@ -1,30 +1,101 @@
 {
-	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "uni-app"
-		}
-	},
-	{
-		"path" : "pages/search/search",
-		"style" : 
+	"pages": [
 		{
-			"navigationBarTitleText" : "",
-			"enablePullDownRefresh" : false
-		}
-	},
-	{
-		"path" : "pages/register/register",
-		"style" : 
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
 		{
-			"navigationBarTitleText" : "",
-			"enablePullDownRefresh" : false,
-			"navigationBarBackgroundColor": "#9CEBFF",
-			"navigationStyle": "custom",
-			 "backgroundColor": "#9CEBFF"
-				
+			"path": "pages/search/search",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#9CEBFF",
+				"navigationStyle": "custom",
+				"backgroundColor": "#9CEBFF"
+			}
+		},
+		{
+			"path": "pages/release/release",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/product-details/product-details",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/shopping-cart/shopping-cart",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/check/check",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/evaluate/evaluate",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/evaluate-details/evaluate-details",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/set/set-list",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/set/info-set",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/set/address-set",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/set/about",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
 		}
-	}],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -1,7 +1,7 @@
 package edu.fzu.se.backend.mapper;
 
 import org.apache.ibatis.annotations.*;
-
+import io.swagger.v3.oas.annotations.Operation;
 
 import edu.fzu.se.backend.bean.Messages;
 
@@ -10,17 +10,29 @@ import java.util.List;
 
 @Mapper
 public interface MessagesMapper {
+    @Operation(summary = "获取所有消息")
     @Select("SELECT * FROM Messages")
     List<Messages> selectAll();
 
-    @Delete("DELETE FROM Messages WHERE Message_ID=#{messageId}")
-    int deleteById(Long messageId);
+    @Operation(summary = "根据消息ID查询消息")
+    @Select("SELECT * FROM Messages WHERE Message_ID = #{Message_ID}")
+    Messages selectById(Long Message_ID);
 
+    @Operation(summary = "根据发送者和接收者ID查询消息记录")
+    @Select("SELECT * FROM Messages WHERE Sender_ID = #{Sender_ID} AND Receiver_ID = #{Receiver_ID}")
+    List<Messages> selectBySenderAndReceiverIds(Long Sender_ID, Long Receiver_ID);
+
+    @Operation(summary = "根据消息ID删除消息")
+    @Delete("DELETE FROM Messages WHERE Message_ID=#{Message_ID}")
+    int deleteById(Long Message_ID);
+
+    @Operation(summary = "插入消息")
     @Insert("INSERT INTO Messages (Message_ID, Sender_ID, Receiver_ID, Message_Content, Time, IsRead) " +
-            "VALUES(#{messageId}, #{senderId}, #{receiverId}, #{messageContent}, #{time}, #{isRead})")
+            "VALUES(#{Message_ID}, #{Sender_ID}, #{Receiver_ID}, #{Message_Content}, #{Time}, #{IsRead})")
     int insertMessage(Messages message);
 
-    @Update("UPDATE Messages SET Sender_ID=#{senderId}, Receiver_ID=#{receiverId}, " +
-            "Message_Content=#{messageContent}, Time=#{time}, IsRead=#{isRead} WHERE Message_ID=#{messageId}")
+    @Operation(summary = "根据消息ID更新消息")
+    @Update("UPDATE Messages SET Sender_ID=#{Sender_ID}, Receiver_ID=#{Receiver_ID}, " +
+            "Message_Content=#{Message_Content}, Time=#{Time}, IsRead=#{IsRead} WHERE Message_ID=#{Message_ID}")
     int updateById(Messages message);
 }
