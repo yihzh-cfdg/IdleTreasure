@@ -24,17 +24,15 @@
 		<uni-list border-full class="other-set">
 			<!--收货地址-->
 			<uni-list-item showArrow title="收货地址" clickable link to="/pages/set/address-set"/>
-			<!--支付设置-->
+			<!--支付
 			<uni-list-item showArrow title="支付设置" clickable/>
+			设置-->
 			<!--我们-->
 			<uni-list-item showArrow title="我们" clickable link to="/pages/set/about"/>
 			<!--退出登录-->
 			<uni-list-item showArrow title="退出登录" clickable @click="logOut"/>
 		</uni-list>
-
 	</view>
-	
-	
 
 </template>
 
