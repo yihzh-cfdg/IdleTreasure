@@ -31,10 +31,7 @@
 			<!--退出登录-->
 			<uni-list-item showArrow title="退出登录" clickable @click="logOut"/>
 		</uni-list>
-
 	</view>
-	
-	
 
 </template>
 
