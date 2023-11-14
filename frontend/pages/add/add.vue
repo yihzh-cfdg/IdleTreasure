@@ -1,6 +1,6 @@
 <template>
 	<view>
-		消息
+		Add
 		<tab-bar></tab-bar>
 	</view>
 </template>

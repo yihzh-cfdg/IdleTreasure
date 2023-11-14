@@ -1,6 +1,6 @@
 <template>
 	<view>
-		消息
+		购物车
 		<tab-bar></tab-bar>
 	</view>
 </template>
