@@ -124,8 +124,36 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
-		}
-				
+		},
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+		            "path" : "pages/add/add",
+		            "style" :                                                                                    
+		            {
+		                "navigationBarTitleText": "",
+		                "enablePullDownRefresh": false
+		            }
+       		 }		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -135,5 +163,29 @@
 		"app-plus": {
 			"background": "#efeff4"
 		}
+	},
+	"tabBar": {
+		"list": [
+			{
+				"text": "首页",
+				"pagePath": "pages/index/index"
+			},
+			{
+				"text": "购物车",
+				"pagePath": "pages/cart/cart"
+			},
+			{
+				"text": "Add",
+				"pagePath": "pages/add/add"
+			},
+			{
+				"text": "消息",
+				"pagePath": "pages/message/message"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/my/my"
+			}
+		]
 	}
 }
