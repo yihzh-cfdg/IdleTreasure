@@ -26,7 +26,7 @@
 		
 		<view class="inputArea">
 			<!-- 跳转注册界面 -->
-			<text style="float:right;color: azure;" @click=" ">新用户注册</text>
+			<navigator url="../register/register" hover-class="none" class="label">新用户注册</navigator>
 		</view>
 		
 	</view>
@@ -156,5 +156,10 @@
 		height: 120px;
 		width: 120px;
 	}
-	
+	.label{
+		padding: 10upx 0;
+		text-align: right;
+		font-size: 30upx;
+		color: #ffffff;
+	}
 </style>

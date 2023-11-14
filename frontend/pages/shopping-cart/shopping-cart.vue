@@ -35,7 +35,9 @@
 			<view class="total-price">
 			<p >合计: ￥{{ total | toFixed  }}</p>
 			<button @click="deleteItems" class="delete-btn">删除</button>
+			<navigator url="../check/check" >
 			<button @click="checkout" class="liquid-btn">结算</button>
+			</navigator>
 			</view>
 		</view>
 	

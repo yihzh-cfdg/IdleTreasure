@@ -42,7 +42,11 @@
 			<p class="product-info">{{ productInfo }}</p>
 			<view class="image-list">
 			    <!-- 商品图片列表 -->
-			    <image v-for="(image, index) in imageList" :key="index" :src="image" class="product-image" />
+			    <image v-for="(image, index) in imageList" 
+				:key="index" 
+				:src="image" 
+				class="product-image"
+				@click="previewImage(index)"/>
 			  </view>
 	  
     </view>
@@ -150,7 +154,14 @@ export default {
 				buttonClick(e) {
 					console.log(e)
 					this.options[0].info++
-				}		
+				},
+						// 点击预览图片
+						  previewImage(index) {
+						    uni.previewImage({
+						      current: this.imageList[index],
+						      urls: this.imageList 
+						    });
+						  }	  
 	
   }
 };
