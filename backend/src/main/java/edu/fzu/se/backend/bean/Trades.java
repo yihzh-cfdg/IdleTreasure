@@ -31,4 +31,10 @@ public class Trades {
 
     @Schema(name = "Paid_Amount", description = "支付金额")
     private Double Paid_Amount;
+
+    @Schema(name = "Delivery_Address",description = "收货地址")
+    private String Delivery_Address;
+
+    @Schema(name = "Shipping_Address",description = "发货地址")
+    private String Shipping_Address;
 }
