@@ -27,11 +27,11 @@ public interface WxUserMapper {
     int deleteById(Long User_ID);
 
     @Operation(summary = "插入用户")
-    @Insert("INSERT INTO Users(User_Name, User_Key, FZU_Key, Head_Portrait, Delivery_Address) " +
-            "VALUES(#{User_Name}, #{User_Key}, #{FZU_Key}, #{Head_Portrait}, #{Delivery_Address})")
+    @Insert("INSERT INTO Users(User_Name, User_Key, FZU_Key, Head_Portrait, Delivery_Address,Shipping_Address) " +
+            "VALUES(#{User_Name}, #{User_Key}, #{FZU_Key}, #{Head_Portrait}, #{Delivery_Address},#{Shipping_Address})")
     int insertUser(WxUser user);
 
     @Operation(summary = "根据用户ID更新用户信息")
-    @Update("UPDATE Users SET User_Name=#{User_Name}, User_Key=#{User_Key}, Head_Portrait=#{Head_Portrait}, Delivery_Address=#{Delivery_Address} WHERE User_ID=#{User_ID}")
+    @Update("UPDATE Users SET User_Name=#{User_Name}, User_Key=#{User_Key},FZU_Key=#{FZU_Key}, Head_Portrait=#{Head_Portrait}, Delivery_Address=#{Delivery_Address},Shipping_Address=#{Shipping_Address} WHERE User_ID=#{User_ID}")
     int updateById(WxUser user);
 }

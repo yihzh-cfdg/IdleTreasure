@@ -17,21 +17,24 @@ import org.springframework.stereotype.Component;
 @Schema(description = "微信用户")
 public class WxUser {
     @TableId(type = IdType.AUTO)
-    @Schema(description = "用户ID")
+    @Schema(name="User_ID",description = "用户ID")
     private Long User_ID;
 
-    @Schema(description = "用户名称")
+    @Schema(name="User_Name",description = "用户名称")
     private String User_Name;
 
-    @Schema(description = "用户密码")
+    @Schema(name="User_Key",description = "用户密码")
     private String User_Key;
 
-    @Schema(description = "福州大学学号")
+    @Schema(name="FZU_Key",description = "福州大学学号")
     private String FZU_Key;
 
-    @Schema(description = "头像图片链接")
+    @Schema(name="Head_Portrait",description = "头像图片链接")
     private String Head_Portrait;
 
-    @Schema(description = "收货地址")
+    @Schema(name="Delivery_Address",description = "默认收货地址")
     private String Delivery_Address;
+
+    @Schema(name="Shipping_Address",description = "默认发货地址")
+    private String Shipping_Address;
 }
