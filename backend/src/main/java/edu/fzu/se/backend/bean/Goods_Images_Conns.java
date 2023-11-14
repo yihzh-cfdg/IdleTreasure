@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 @Schema(name = "Goods_Images_Conns", description = "商品图片连接")
 public class Goods_Images_Conns {
     @Schema(name = "Goods_ID", description = "商品ID")
-    private Integer Goods_ID;
+    private Long Goods_ID;
 
     @Schema(name = "Image_ID", description = "图片ID")
-    private Integer Image_ID;
+    private Long Image_ID;
 }
