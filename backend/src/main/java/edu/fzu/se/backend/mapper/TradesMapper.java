@@ -28,11 +28,11 @@ public interface TradesMapper {
     int deleteById(Long Trade_ID);
 
     @Operation(summary = "插入交易记录")
-    @Insert("INSERT INTO Trades (Trade_ID, Buyer_ID, Seller_ID, Trade_Time, Paid_Amount) " +
-            "VALUES(#{Trade_ID}, #{Buyer_ID}, #{Seller_ID}, #{Trade_Time}, #{Paid_Amount})")
+    @Insert("INSERT INTO Trades (Trade_ID, Buyer_ID, Seller_ID, Trade_Time, Paid_Amount,Delivery_Address,Shipping_Address) " +
+            "VALUES(#{Trade_ID}, #{Buyer_ID}, #{Seller_ID}, #{Trade_Time}, #{Paid_Amount}, #{Delivery_Address},#{Shipping_Address})")
     int insertTrade(Trades trade);
 
     @Operation(summary = "根据交易ID更新交易记录")
-    @Update("UPDATE Trades SET Trade_Time=#{Trade_Time}, Paid_Amount=#{Paid_Amount} WHERE Trade_ID=#{Trade_ID}")
+    @Update("UPDATE Trades SET Trade_Time=#{Trade_Time}, Paid_Amount=#{Paid_Amount}, Delivery_Address=#{Delivery_Address},Shipping_Address=#{Shipping_Address} WHERE Trade_ID=#{Trade_ID}")
     int updateById(Trades trade);
 }

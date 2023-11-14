@@ -45,7 +45,10 @@ public interface GoodsMapper {
     @Operation(summary = "根据关键字模糊匹配查询商品记录")
     @Select("SELECT * FROM Goods WHERE Goods_Name LIKE CONCAT('%', #{Keyword}, '%')")
     List<Goods> selectByKeyword(String Keyword);
-
+    @Operation(summary = "根据商品分类查询商品记录")
+//  注意，分类属性列当前的数据类型是这样的：Classification ENUM('文娱用品', '学习用品', '生活用品', '交通工具', '奇奇怪怪') NOT NULL
+    @Select("SELECT * FROM Goods WHERE Classification = #{Classification}")
+    List<Goods> selectByClassification(String Classification);
     @Operation(summary = "根据用户名查询用户售卖的商品记录")
     @Select("SELECT g.* FROM Goods g JOIN Users u ON g.Seller_ID = u.User_ID WHERE u.User_Name = #{userName}")
     List<Goods> selectGoodsByUserName(String userName);
