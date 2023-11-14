@@ -61,6 +61,7 @@
 				</view>
 			</view>
 		</view>
+		<tab-bar></tab-bar>
 	</view>
 </template>
 
@@ -468,7 +469,7 @@
 		}
 	}
 
-	
+
 
 	/* 多行省略 */
 	.multi-line-omit {
@@ -488,4 +489,3 @@
 		text-overflow: ellipsis; // 溢出用省略号显示
 	}
 </style>
-
