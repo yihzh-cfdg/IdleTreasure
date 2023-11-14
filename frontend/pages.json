@@ -96,10 +96,10 @@
 			}
 		},
 		{
-				"path": "pages/user/user",
-				"style": {
-					"navigationStyle": "custom"
-					}
+			"path": "pages/user/user",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		},
 		{
 			"path": "pages/region/region",
@@ -147,13 +147,19 @@
 			}
 		},
 		{
-		            "path" : "pages/add/add",
-		            "style" :                                                                                    
-		            {
-		                "navigationBarTitleText": "",
-		                "enablePullDownRefresh": false
-		            }
-       		 }		
+			"path": "pages/add/add",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -168,15 +174,15 @@
 		"list": [
 			{
 				"text": "首页",
-				"pagePath": "pages/index/index"
+				"pagePath": "pages/home/home"
 			},
 			{
 				"text": "购物车",
-				"pagePath": "pages/cart/cart"
+				"pagePath": "pages/shopping-cart/shopping-cart"
 			},
 			{
 				"text": "Add",
-				"pagePath": "pages/add/add"
+				"pagePath": "pages/release/release"
 			},
 			{
 				"text": "消息",
@@ -184,7 +190,7 @@
 			},
 			{
 				"text": "我的",
-				"pagePath": "pages/my/my"
+				"pagePath": "pages/user/user"
 			}
 		]
 	}
