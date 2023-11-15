@@ -37,4 +37,11 @@ public class WxUser {
 
     @Schema(name="Shipping_Address",description = "默认发货地址")
     private String Shipping_Address;
+
+    @Schema(name = "Like_Count", description = "关注数量")
+    private Integer Like_Count;
+
+    @Schema(name = "Beliked_Count", description = "被关注数量")
+    private Integer Beliked_Count;
+
 }
