@@ -1,7 +1,7 @@
 <template>
 	<view class="box">
-		<view class="back" @click="goBack">
-		  <uni-icons type="back" size="30"></uni-icons>
+		<view class="back">
+		  <uni-icons type="back" size="30" style="margin-left: -45px;" @click="goBack"></uni-icons>
 		</view>
 		<view class="title">创建您的账户</view>
 		<view class="form">
@@ -57,9 +57,9 @@
 						updatePassword(e) {
 						    this.password = e.target.value;
 						  },
-						 goBack() {
-						      // 在这里添加返回逻辑
-						    }   
+						goBack() {
+							uni.navigateBack();
+						}
 				}
 			}
 </script>
@@ -73,8 +73,6 @@
 	}
 	.back{	
 		background: rgba(91, 195, 227, 0);
-		top: 5px;
-		left:0;
 		font-size: 36upx;
 		color: #FFFFFF;
 		border: none;
