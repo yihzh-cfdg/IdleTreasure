@@ -11,6 +11,13 @@ import java.util.List;
 
 @Mapper
 public interface GoodsMapper {
+    @Operation(summary = "根据卖家ID查询商品记录")
+    @Select("SELECT * FROM Goods WHERE Seller_ID = #{Seller_ID}")
+    List<Goods> selectGoodsBySellerId(@Param("Seller_ID") Long Seller_ID);
+
+    @Operation(summary = "根据卖家ID查询商品记录数量（我发布的）")
+    @Select("SELECT COUNT(*) FROM Goods WHERE Seller_ID = #{Seller_ID}")
+    int countGoodsBySellerId(@Param("Seller_ID") Long Seller_ID);
     @Operation(summary = "获取所有商品")
     @Select("SELECT * FROM Goods")
     List<Goods> selectAll();
