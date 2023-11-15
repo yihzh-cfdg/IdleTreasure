@@ -128,7 +128,7 @@
 			},
 			setting(){
 				uni.navigateTo({
-							 url:'',
+							 url:'/pages/set/set-list',
 					});//实现跳转设置
 				    
 				},

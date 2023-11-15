@@ -69,7 +69,7 @@
 		methods: {
 			setting(){
 				uni.navigateTo({
-					url:'',//跳转到设置
+					url:'/pages/set/set-list',//跳转到设置
 				})
 			},
 			search(){
