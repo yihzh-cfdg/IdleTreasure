@@ -2,11 +2,16 @@ package edu.fzu.se.backend.controller;
 
 import edu.fzu.se.backend.bean.ShoppingCart;
 import edu.fzu.se.backend.service.ShoppingCartService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Tag(name = "",description = "")
 @RestController
 @RequestMapping("/shopping-cart")
 public class ShoppingCartController {
@@ -14,6 +19,11 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
+    @Operation(summary = "",description = "")
+    @Parameters({
+        @Parameter(name = "userId",description = ""),
+        @Parameter(name = "goodsId",description = "")
+    })
     // 根据用户ID和商品ID查询购物车项
     @GetMapping("/{userId}/{goodsId}")
     public ShoppingCart selectByUserIdAndGoodsId(@PathVariable Long userId, @PathVariable Long goodsId) {
