@@ -1,15 +1,14 @@
 package edu.fzu.se.backend.service.serviceimpl;
-
+import edu.fzu.se.backend.bean.WxUser;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 import edu.fzu.se.backend.service.WxUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import edu.fzu.se.backend.bean.WxUser;
 import edu.fzu.se.backend.mapper.WxUserMapper;
-
 import java.util.List;
 
 @Service
-public class WxUserServiceimpl implements WxUserService {
+public class WxUserServiceimpl  extends ServiceImpl<WxUserMapper, WxUser> implements  WxUserService {
     @Autowired
     private  WxUserMapper wxUserMapper;
     @Override
@@ -44,4 +43,3 @@ public class WxUserServiceimpl implements WxUserService {
         return false;
     }
 }
-

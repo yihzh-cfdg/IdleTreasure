@@ -2,15 +2,15 @@ package edu.fzu.se.backend.mapper;
 
 import org.apache.ibatis.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
-
+import edu.fzu.se.backend.bean.Goods;
 import edu.fzu.se.backend.bean.Trades;
 //import edu.fzu.se.mybatisplus.core.mapper.BaseMapper;
 //import edu.fzu.se.web.wx_user.entity.Trades;
 //import scala.collection.immutable.List;
 import java.util.List;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 @Mapper
-public interface TradesMapper {
+public interface TradesMapper  extends BaseMapper<Goods>{
     @Operation(summary = "获取所有交易记录")
     @Select("SELECT * FROM Trades")
     List<Trades> selectAll();
