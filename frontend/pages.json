@@ -40,7 +40,7 @@
 		{
 			"path": "pages/shopping-cart/shopping-cart",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -126,37 +126,16 @@
 			}
 		},
 		{
-			"path": "pages/cart/cart",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/message/message",
 			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/my/my",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/add/add",
-			"style": {
-				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 		},
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 		}

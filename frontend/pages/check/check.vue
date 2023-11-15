@@ -77,7 +77,7 @@
 		},
 		methods: {
 			goBack() {
-				uni.navigateBack({delta: 1});
+				uni.navigateBack();
 			},
 			onClick(e){
 				uni.showToast({title: `点击${e.content.text}`,icon: 'none'});

@@ -251,7 +251,7 @@ export default {
 	/*固定结算部分*/
 	.total{
 	  position: fixed;
-	  bottom: 10px; /* 距离底部的距离 */
+	  bottom: 50px; /* 距离底部的距离 */
 	  height:60px;
 	  left: 0;
 	  right: 0;
