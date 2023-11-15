@@ -10,7 +10,7 @@
 						</view>
 					</block>
 						 <!--搜索-->
-						<view class="input-view">
+						<view class="input-view" @click="toggleSearch">
 	  						<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
 	  						<input confirm-type="search" class="nav-bar-input" type="text" placeholder="搜索你要的宝贝"
 	  							@confirm="confirm" />
@@ -124,6 +124,11 @@ export default {
 			});
 	      }
 	    },
+	toggleSearch(){
+		uni.redirectTo({
+			url: '../search/search'//跳转到搜索页面
+		})
+	},	
 	onClick(e) {
 					if (!this.isFavorite && e.content.text === '收藏') {
 					        // 第一次点击收藏，将图标变成实心星星，文本变为"已收藏"
