@@ -99,7 +99,8 @@
 			confirmPurchase() {
 				// 确认购买操作，调用后端接口
 				uni.showToast({
-					title: `确认购买成功`
+					title: `确认购买成功`,
+					icon:'none'
 				})
 			},
 		},

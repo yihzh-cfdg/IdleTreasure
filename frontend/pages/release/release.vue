@@ -97,7 +97,8 @@
 			},
 			release(){
 				uni.showToast({
-					title: `发布成功`
+					title: `发布成功~`,
+					icon:'none'
 				})
 			},
 			changeDeliveryMethod(e) {
