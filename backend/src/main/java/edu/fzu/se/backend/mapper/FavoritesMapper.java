@@ -15,6 +15,14 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @Mapper
 public interface FavoritesMapper {
+    @Operation(summary ="查询指定用户收藏的商品数量（我的收藏数）")
+    @Select("SELECT COUNT(*) FROM Favorites WHERE User_ID=#{User_ID}")
+    int countFavoriteByUserId(@Param("User_ID") Long User_ID);
+
+    @Operation(summary ="查询指定商品被用户收藏次数（几人想要）")
+    @Select("SELECT COUNT(*) FROM Favorites WHERE Goods_ID=#{Goods_ID}")
+    int countFavoriteByGoodsId(@Param("Goods_ID") Long Goods_ID);
+//    以上为11.15更新
     @Operation(summary = "获取所有收藏")
     @Select("SELECT * FROM Favorites")
     List<Favorites> selectAll();
@@ -45,4 +53,6 @@ public interface FavoritesMapper {
     @Update("UPDATE Favorites SET User_ID=#{User_ID}, Goods_ID=#{Goods_ID}, Insert_Time=#{Insert_Time} " +
             "WHERE Favorite_ID=#{Favorite_ID}")
     int updateById(Favorites favorite);
+
+
 }

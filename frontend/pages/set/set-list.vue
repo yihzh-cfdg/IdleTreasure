@@ -15,7 +15,8 @@
 			<uni-list-chat :avatar-circle="true" 
 			:title="userInfo.name" :avatar="userInfo.avatar" 
 			:note="userInfo.account"clickable link to="/pages/set/info-set">
-				<uni-icons class="back-icons" size="18" type="right" color="#bbbec6"></uni-icons>
+				<uni-icons class="next-icons" size="17" type="right" color="#bbbec6" 
+				style="margin-right:-5px;margin-top:10px;"></uni-icons>
 			</uni-list-chat>
 
 		</view>	
@@ -63,7 +64,7 @@
 								key: 'token',
 								success(res) {
 									uni.redirectTo({
-										url: ''//跳转到登录页面
+										url: '/pages/login/login'//跳转到登录页面
 									})
 								}
 							})
@@ -83,7 +84,5 @@
 		color: #000;
 		/* 设置文字颜色 */
 	}
-
-
 </style>
 
