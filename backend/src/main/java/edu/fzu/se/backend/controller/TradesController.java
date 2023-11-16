@@ -5,6 +5,10 @@ import edu.Utils.ResultUtils;
 import edu.Utils.ResultVo;
 import edu.fzu.se.backend.bean.Goods;
 import edu.fzu.se.backend.service.TradesService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,21 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-
+@Tag(name = "TradesController", description = "商品上传控制器")
 @RestController
 @RequestMapping("/api/goods")
 public class TradesController {
     @Autowired
     private TradesService goodsService;
 
-    //发布
+    @Operation(summary = "发布商品")
+    @Parameters({
+            @Parameter(name = "goods", description = "商品", required = true)
+    })
     @PostMapping("/release")
-    public ResultVo release(@RequestBody Goods goods){
+    public String release(@RequestBody Goods goods){
         //设置时间
         goods.setRelease_Time(new Date());
         if(goodsService.save(goods)){
-            return ResultUtils.success("发布成功!");
+            return "发布成功!";
         }
-        return ResultUtils.error("发布失败!");
+        return "发布失败!";
     }
 }

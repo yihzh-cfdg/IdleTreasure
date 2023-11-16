@@ -35,7 +35,7 @@
 				tabBar: {
 					list: [{
 							"pagePath": "pages/index/index",
-							"iconPath": "/static/tabIcon/index.png",
+							"iconPath": "../static/tabIcon.index.png",
 							"selectedIconPath": "/static/tabIcon/index1.png",
 							"text": "首页"
 						}, {

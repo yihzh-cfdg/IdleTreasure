@@ -1,5 +1,6 @@
 package edu.fzu.se.backend.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import edu.fzu.se.backend.bean.Goods_Images_Conns;
@@ -10,7 +11,7 @@ import java.util.List;
 
 
 @Mapper
-public interface GoodsMapper {
+public interface GoodsMapper extends BaseMapper<Goods> {
     @Operation(summary = "根据卖家ID查询商品记录")
     @Select("SELECT * FROM Goods WHERE Seller_ID = #{Seller_ID}")
     List<Goods> selectGoodsBySellerId(@Param("Seller_ID") Long Seller_ID);
