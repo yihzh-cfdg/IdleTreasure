@@ -35,7 +35,9 @@
 			<view class="total-price">
 			<p >合计: ￥{{ total | toFixed  }}</p>
 			<button @click="deleteItems" class="delete-btn">删除</button>
+			<navigator url="../check/check" >
 			<button @click="checkout" class="liquid-btn">结算</button>
+			</navigator>
 			</view>
 		</view>
 	
@@ -249,7 +251,7 @@ export default {
 	/*固定结算部分*/
 	.total{
 	  position: fixed;
-	  bottom: 10px; /* 距离底部的距离 */
+	  bottom: 50px; /* 距离底部的距离 */
 	  height:60px;
 	  left: 0;
 	  right: 0;
