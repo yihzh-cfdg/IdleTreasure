@@ -235,7 +235,7 @@
 	display: flex;
 	height: 50px;
 	font-size: 50rpx;
-	margin-top: 30px;
+	margin-top: -30px;
 	background-color: #fff;
 	
 
