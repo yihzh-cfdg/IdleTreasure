@@ -1,12 +1,11 @@
 package edu.fzu.se.backend.mapper;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import edu.fzu.se.backend.bean.WxUser;
 import org.apache.ibatis.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 @Mapper
-public interface WxUserMapper {
-
+public interface WxUserMapper  extends BaseMapper<WxUser>{
     @Operation(summary = "获取所有用户")
     @Select("SELECT * FROM Users")
     List<WxUser> selectAll();
@@ -20,7 +19,7 @@ public interface WxUserMapper {
     WxUser selectByFzuKey(String FzuKey);
 
     @Operation(summary = "根据关键字查询用户")
-    @Select("SELECT * FROM Users WHERE User_Name LIKE CONCAT('%', #{keyword}, '%')")
+    @Select("SELECT * FROM Users WHERE User_Name LIKE CONCAT('%', #  {keyword}, '%')")
     List<WxUser> selectByKeyword(String keyword);
 
     @Operation(summary = "根据用户ID删除用户")

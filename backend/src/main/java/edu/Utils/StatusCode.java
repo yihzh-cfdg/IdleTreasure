@@ -1,4 +1,4 @@
-package com.itmk.status;
+package edu.Utils;
 
 /**
  * 返回状态码

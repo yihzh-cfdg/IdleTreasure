@@ -1,7 +1,6 @@
 package edu.fzu.se.backend.service;
 
 import edu.fzu.se.backend.bean.ShoppingCart;
-
 import java.util.List;
 
 public interface ShoppingCartService {
