@@ -153,7 +153,17 @@
 		                "navigationBarTitleText": "",
 		                "enablePullDownRefresh": false
 		            }
-       		 }		
+       		 },
+		{
+		            "path" : "pages/result/result",
+		            "style" :                                                                                    
+		            {
+						"navigationStyle": "custom",
+		                "navigationBarTitleText": "",
+		                "enablePullDownRefresh": false
+		            }
+		            
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
