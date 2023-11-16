@@ -139,6 +139,23 @@
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
+		},
+    {
+        "path" : "pages/add/add",
+        "style" :                                                                                    
+        {
+            "navigationBarTitleText": "",
+            "enablePullDownRefresh": false
+        }
+    },
+    {
+        "path" : "pages/result/result",
+        "style" :                                                                                    
+        {
+    "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "enablePullDownRefresh": false
+        }
 		}
 	],
 	"globalStyle": {
