@@ -85,7 +85,7 @@
 	}
 
 	.avatorWrapper {
-		margin-top: 16px;
+		//margin-top: 16px;
 		height: 30vh;
 		width: 100vw;
 		display: flex;

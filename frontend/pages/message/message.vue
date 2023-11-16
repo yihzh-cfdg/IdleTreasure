@@ -84,7 +84,7 @@
 <style>
 	/* @import '../../css/style.css'; */
 	.aui-news-box {
-	    margin-top: 10px;
+	    //margin-top: 10px;
 	    background: #fff;
 	}
 	.aui-news-item {
