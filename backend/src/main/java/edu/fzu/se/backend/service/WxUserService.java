@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface WxUserService extends IService<WxUser>{
     //登录
-    boolean loginService(String name,String password);
+    Long loginService(String name,String password);
     //注册
     boolean registerService(WxUser wxUser);
     //用户名是否存在

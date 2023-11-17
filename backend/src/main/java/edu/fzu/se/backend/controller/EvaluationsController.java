@@ -14,7 +14,7 @@ import java.util.List;
 
 @Tag(name = "EvaluationsController", description = "评价控制器")
 @RestController
-@RequestMapping("/evaluations")
+@RequestMapping("/api/evaluations")
 public class EvaluationsController {
     @Autowired
     private EvaluationsMapper evaluationsMapper;

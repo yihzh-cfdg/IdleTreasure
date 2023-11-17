@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Tag(name = "HistoryController", description = "历史记录控制器")
-@RequestMapping("/history")
+@RequestMapping("/api/history")
 public class HistoryController {
   
     @Autowired

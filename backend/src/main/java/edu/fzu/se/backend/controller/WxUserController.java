@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 
 @Tag(name = "WxUserController", description = "微信用户控制器")
 @RestController
@@ -49,19 +51,16 @@ public class WxUserController {
     }
     @Operation(summary = "登录")
     @Parameters({
-            @Parameter(name = "user", description = "用户", required = true)
+            @Parameter(name = "userinfo", description = "用户信息", required = true)
     })
     @PostMapping("/login")
-    public String login(@RequestBody WxUser user){
+    public String login(@RequestBody Map<String, String> userinfo){
         //构造查询条件
-        QueryWrapper<WxUser> query = new QueryWrapper<>();
-        query.lambda().eq(WxUser::getUser_Name,user.getUser_Name()).eq(WxUser::getUser_Key,
-                DigestUtils.md5DigestAsHex(user.getUser_Key().getBytes()));
-        WxUser wxUser = wxUserService.getOne(query);
-        if(wxUser != null){
-            return "登录成功";
+        Long x = wxUserService.loginService(userinfo.get("username"),userinfo.get("password"));
+        if(x != null){
+            return x.toString();
         }
-        return "用户密码或密码错误!";
+        else throw new RuntimeException("用户名或密码错误");
     }
 
 }

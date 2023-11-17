@@ -14,7 +14,7 @@ import java.util.List;
 
 @Tag(name = "FavoriteController", description = "收藏控制器")
 @RestController
-@RequestMapping("/favorites")
+@RequestMapping("/api/favorites")
 public class FavoriteController {
 
     @Autowired

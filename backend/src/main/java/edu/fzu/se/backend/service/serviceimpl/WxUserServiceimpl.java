@@ -13,14 +13,14 @@ public class WxUserServiceimpl  extends ServiceImpl<WxUserMapper, WxUser> implem
     private  WxUserMapper wxUserMapper;
     @Override
     //登录
-    public boolean loginService(String name,String password){
+    public Long loginService(String name,String password){
         List<WxUser> users = wxUserMapper.selectAll();
         for (WxUser u : users) {
             if (name.equals(u.getUser_Name()) && password.equals(u.getUser_Key())) {
-                return true;
+                return u.getUser_ID();
             }
         }
-        return false;
+        return null;
     }
     //注册
     @Override

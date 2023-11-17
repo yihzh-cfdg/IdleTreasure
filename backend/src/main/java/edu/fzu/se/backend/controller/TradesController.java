@@ -1,8 +1,6 @@
 //商品上传接口功能实现
 package edu.fzu.se.backend.controller;
 
-import edu.Utils.ResultUtils;
-import edu.Utils.ResultVo;
 import edu.fzu.se.backend.bean.Goods;
 import edu.fzu.se.backend.service.TradesService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Tag(name = "ShoppingCartController", description = "购物车控制器")
 @RestController
-@RequestMapping("/shopping-cart")
+@RequestMapping("/api/shopping-cart")
 public class ShoppingCartController {
 
     @Autowired

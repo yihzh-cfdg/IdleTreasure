@@ -69,7 +69,7 @@
 				inputValue: '123',
 				isClick:1,
 				showClearIcon: false,
-				current: 1,
+				current: 0,
 				list: [{
 						empName: '摸鱼小狗',
 						price: '35.66',
