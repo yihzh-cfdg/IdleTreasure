@@ -3,12 +3,10 @@
 		<!-- 导航栏 -->
 		<view class="navigation-bar">
 			<uni-nav-bar dark background-color="#f5f5f5" status-bar left-width="250rpx" right-width="160rpx">
-				<!--
 				<block slot="left">
 					<uni-icons  @click="goBack()" class="back-icons" size="20" type="back"></uni-icons>
 					<text class="navi-header-text" style="font-size:1.15em" >商品发布</text>
 				</block>
-				-->
 				<block slot="right">
 					<button class="release-btn" type="primary" size="mini" style="border-radius:15px" @click="release">发布</button>	
 				</block>
@@ -97,7 +95,8 @@
 			},
 			release(){
 				uni.showToast({
-					title: `发布成功`
+					title: `发布成功~`,
+					icon:'none'
 				})
 			},
 			changeDeliveryMethod(e) {

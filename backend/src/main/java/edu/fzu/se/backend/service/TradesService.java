@@ -1,4 +1,8 @@
 package edu.fzu.se.backend.service;
 
-public interface TradesService {
+import com.baomidou.mybatisplus.extension.service.IService;
+import edu.fzu.se.backend.bean.Goods;
+import org.springframework.stereotype.Service;
+
+public interface TradesService  extends IService<Goods> {
 }
