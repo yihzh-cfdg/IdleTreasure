@@ -179,7 +179,7 @@
 	}
 	.infor{
 		font-size: 20px;
-		margin-top: 40px;
+		margin-top: 20px;
 		
 	}
 	.time{
