@@ -40,7 +40,7 @@
 		mapMutations
 	} from "vuex";
 	export default {
-		
+
 		data() {
 			return {
 				formData: {
@@ -62,24 +62,33 @@
 						username: this.formData.iphone,
 						password: this.formData.password,
 					},
-					headers: { 
-					    'Content-Type': 'application/json'
-					},
+					headers: {
+						'Content-Type': 'application/json'
+		 			},
 					success: (res) => {
 						console.log(res.data);
-						let provider = {
-							token: res.data.data,
-							user_name: this.formData.iphone
+						if (res.data.code == 200) {
+							let provider = {
+								token: res.data.data,
+								user_name: this.formData.iphone
+							};
+							this.login(provider);
+							uni.reLaunch({
+								url: '/pages/home/home'
+							});
+						} else {
+							uni.showToast({
+								title: res.data.msg,
+								duration: 1000
+							});
+							this.formData.iphone = "";
+							this.formData.password = "";
 						}
-						this.login(provider);
-						uni.reLaunch({
-							url:'/pages/home/home'
-						});
 					},
 					fail: (res) => {
 						console.log(res.data);
 						uni.showToast({
-							title: '密码错误',
+							title: '连接错误',
 							duration: 1000
 						});
 						this.formData.iphone = "";

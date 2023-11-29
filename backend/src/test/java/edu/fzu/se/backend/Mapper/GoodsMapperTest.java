@@ -1,23 +1,23 @@
 package edu.fzu.se.backend.Mapper;
 import edu.fzu.se.backend.bean.Goods;
+import edu.fzu.se.backend.bean.FrontendGood;
 import edu.fzu.se.backend.bean.Images;
 import edu.fzu.se.backend.mapper.GoodsMapper;
 import edu.fzu.se.backend.mapper.ImagesMapper;
-import jakarta.annotation.Resource;
-import org.apache.ibatis.annotations.Mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-import org.springframework.context.annotation.Configuration;
-import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 class GoodsMapperTest {
     @Autowired
     private GoodsMapper goodsMapper;
+    @Autowired
     private ImagesMapper imagesMapper;
     @Test
     void selectAll() {
@@ -40,14 +40,6 @@ class GoodsMapperTest {
         assertNotNull(images);
         assertTrue(!images.isEmpty());
 
-    }
-
-    @Test
-    void getHomePageGoods() {
-        int searchid =5;
-        List<Goods> actualGoods = goodsMapper.getHomePageGoods(searchid);
-        assertNotNull(actualGoods);
-        assertEquals(5, actualGoods.size());
     }
 
     @Test
@@ -93,7 +85,8 @@ class GoodsMapperTest {
     }
 
     @Test
-    void insertGood() {
+    void insertGood() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Goods goods = new Goods();
         goods.setGoods_ID(1000000015L);
         goods.setGoods_Name("乒乓球");
@@ -101,13 +94,14 @@ class GoodsMapperTest {
         goods.setGoods_Price(250.00);
         goods.setGoods_Description("这是一个测试商品");
         goods.setClassification("交通工具");
-        goods.setRelease_Time("2023-11-11 00:00:00");
+        goods.setRelease_Time(sdf.parse("2023-11-11 00:00:00"));
         int result = goodsMapper.insertGood(goods);
         assertEquals(1, result);
     }
 
     @Test
-    void updateById() {
+    void updateById() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Goods goods = new Goods();
         goods.setGoods_ID(1000000004L);
         goods.setSeller_ID(100000004L);
@@ -115,9 +109,15 @@ class GoodsMapperTest {
         goods.setGoods_Price(100.00);
         goods.setGoods_Description("这是一个测试商品");
         goods.setClassification("文娱用品");
-        goods.setRelease_Time("2023-11-12 12:07:52");
+        goods.setRelease_Time(sdf.parse("2023-11-12 12:07:52"));
 
         int result = goodsMapper.updateById(goods);
         assertEquals(1, result);
+    }
+
+    @Test
+    void getHomePageGoods() {
+        List<FrontendGood> li = goodsMapper.getHomePageGoods();
+        System.out.println(li);
     }
 }

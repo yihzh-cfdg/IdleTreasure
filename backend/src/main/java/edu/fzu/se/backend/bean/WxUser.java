@@ -43,4 +43,6 @@ public class WxUser {
     @Schema(name = "Beliked_Count", description = "被关注数量")
     private Integer Beliked_Count;
 
+    @Schema(name = "phone", description = "手机号")
+    private String phone;
 }

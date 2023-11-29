@@ -75,6 +75,15 @@
 				return total + shippingTotal;
 			}
 		},
+		onLoad:function(opt){
+			if (opt.item === undefined)
+				opt.item =
+				'{"id":"1000000005","price":20,"name":"钢笔","deliveryMethod":"自提","address": "","image":"https://yihzh-imgbed.oss-cn-fuzhou.aliyuncs.com/image/avatar.jpg", "shippingFee": 0}';
+			const item = JSON.parse(decodeURIComponent(opt.item));
+			console.log(item);
+			this.products =[];
+			this.products.push(item);
+		},
 		methods: {
 			goBack() {
 				uni.navigateBack();
@@ -99,7 +108,7 @@
 			confirmPurchase() {
 				// 确认购买操作，调用后端接口
 				uni.showToast({
-					title: `确认购买成功`,
+					title: `创建订单成功`,
 					icon:'none'
 				})
 			},

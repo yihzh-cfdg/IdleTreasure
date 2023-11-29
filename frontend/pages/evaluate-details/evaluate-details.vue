@@ -95,7 +95,6 @@
 	export default {
 		data() {
 			return {
-				
 				image:'../../static/xiaomi.png',
 				name:'出一个小米手环2 全新未拆',
 				price:'25',

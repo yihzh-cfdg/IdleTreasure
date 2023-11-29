@@ -2,7 +2,9 @@
 package edu.fzu.se.backend.controller;
 
 import edu.fzu.se.backend.bean.Goods;
+import edu.fzu.se.backend.bean.Trades;
 import edu.fzu.se.backend.service.TradesService;
+import edu.fzu.se.backend.service.serviceimpl.TradesServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -15,24 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@Tag(name = "TradesController", description = "商品上传控制器")
+@Tag(name = "TradesController", description = "交易记录控制器")
 @RestController
-@RequestMapping("/api/goods")
+@RequestMapping("/api/trades")
 public class TradesController {
     @Autowired
-    private TradesService goodsService;
+    private TradesServiceImpl tradesService;
 
-    @Operation(summary = "发布商品")
+    @Operation(summary = "新增交易")
     @Parameters({
             @Parameter(name = "goods", description = "商品", required = true)
     })
-    @PostMapping("/release")
-    public String release(@RequestBody Goods goods){
-        //设置时间
-        goods.setRelease_Time(new Date());
-        if(goodsService.save(goods)){
-            return "发布成功!";
-        }
-        return "发布失败!";
+    @PostMapping("/add")
+    public String addTrade(@RequestBody Trades trades){
+        tradesService.addTrade(trades);
+        return "success";
     }
 }

@@ -38,6 +38,9 @@
 </template>
 
 <script>
+	import {
+		mapMutations
+	} from "vuex";
 	export default {
 		data() {
 			return {
@@ -50,21 +53,24 @@
 			};
 		},
 		methods:{
+			...mapMutations(["logout"]),
 			goBack(){
 				uni.navigateBack();
 			},
 			logOut(){
+				let that = this;
 				//退出登录
 				uni.showModal({
 					title: '提示',
-					content: '确认退出登陆？',
+					content: '确认退出登录？',
 					success: function(res) {
 						if (res.confirm) {
+							that.logout();
 							uni.removeStorage({
 								key: 'token',
 								success(res) {
 									uni.redirectTo({
-										url: '/pages/login/login'//跳转到登录页面
+										url: '/pages/region/region'//跳转到登录页面
 									})
 								}
 							})

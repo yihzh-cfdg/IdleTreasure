@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -43,6 +46,15 @@ public enum ResultCode {
     SYSTEM_ERROR(5001,"系统错误"),
     UNKNOWN_ERROR(5002,"未知的错误");
 
+    private static Map<Integer,ResultCode > searchMap = new HashMap<>();
+    static {
+        for (ResultCode item : ResultCode.values()) {
+            searchMap.put(item.getCode(), item);
+        }
+    }
+    public static ResultCode getByCode(Integer code){
+        return searchMap.get(code);
+    }
 
     int code;
     String message;

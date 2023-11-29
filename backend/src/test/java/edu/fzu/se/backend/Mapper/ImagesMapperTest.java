@@ -48,7 +48,7 @@ class ImagesMapperTest {
         images.setImage_Name("用户头像1.jpg");
         images.setImage_Data("base128编码的图片数据");
         images.setImage_Class("平台");
-        int result = imagesMapper.insertImage(images);
+        Long result = imagesMapper.insertImage(images);
         assertEquals(1, result);
     }
 
