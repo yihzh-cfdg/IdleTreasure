@@ -17,6 +17,16 @@ spring:
 
 file-save-path: ./img
 
+aliyun:
+  oss:
+    end-point: oss-cn-fuzhou.aliyuncs.com
+    access-key-id: LTAI5tQSaXhBtC5cEr7qy8tn
+    access-key-secret: fiALjfwOdq7VK5HVQ5njg0Va2oHeJ2
+    bucket-name: yihzh-imgbed
+    dir:
+      urlPrefix: image/
+
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

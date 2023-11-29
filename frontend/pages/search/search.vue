@@ -64,7 +64,7 @@
 		methods: {
 			getHistory() {
 				uni.request({
-					url: this.$store.state.baseUrl + "/api/history/user/100000002",
+					url: this.$store.state.baseUrl + "/api/history/user/" + this.$store.state.token,
 					success: (res) => {
 						console.log(res.data);
 						for (let item of res.data.data)
@@ -94,6 +94,9 @@
 					if (this.searchText !== value)
 						this.searchText = value;
 					this.localSearchListManage(value);
+					uni.navigateTo({
+						url:"/pages/result/result?value="+ value
+					})
 				}
 				uni.hideKeyboard();
 				this.loadList(this.searchText);
@@ -108,6 +111,18 @@
 				} else
 					this.localSearchList = [word];
 				uni.setStorageSync(localSearchListKey, this.localSearchList);
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/history/insert",
+					method: "POST",
+					data: {
+						user_ID: this.$store.state.token,
+						search_ID: 0,
+						keyword: word
+					},
+					success: (res) => {
+						console.log("成功插入历史记录!");
+					}
+				})
 			},
 			LocalSearchListClear() {
 				uni.showModal({

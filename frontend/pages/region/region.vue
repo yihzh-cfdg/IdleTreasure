@@ -13,12 +13,12 @@
 
 			<!-- 跳转登录 -->
 			<view class="loginBtn1" @click="login()">
-				<text class="btnValue" style="color: black;">登录</text>
+				<text class="btnValue" style="color: black;" @click="login()">登录</text>
 
 			</view>
 			<!-- 跳转注册 -->
 			<view class="loginBtn2" @click="register()">
-				<text class="btnValue" style="color: black;">注册</text>
+				<text class="btnValue" style="color: black;" @click="register()">注册</text>
 
 
 			</view>

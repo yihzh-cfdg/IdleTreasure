@@ -23,12 +23,13 @@
 		<view class="moduleBox flex">
 			<view :class="['moduleItem', 'flex','module'+item.id]" v-for="(item,index) in moduleList" :key="index">
 				<view class="content">
-					<uni-icons :type="item.icon" :size="item.size ? item.size : 20" color="#fff" custom-prefix="iconfont"></uni-icons>
+					<uni-icons :type="item.icon" :size="item.size ? item.size : 20" color="#fff"
+						custom-prefix="iconfont"></uni-icons>
 					<view class="name">
 						{{item.name}}
 					</view>
 				</view>
-				
+
 			</view>
 		</view>
 
@@ -42,18 +43,19 @@
 			<view class="goodsBox flex">
 				<view class="cont-box" :style="{ '--layout-width': 100 / flowData.column - flowData.columnSpace + '%' }"
 					v-for="(numVal, index) in flowData.column" :key="numVal">
-					<view class="item-box" v-for="(item, j) in flowData[`column_${index + 1}`]" :key="j">
+					<view class="item-box" v-for="(item, j) in flowData[`column_${index + 1}`]" :key="j"
+						@click="navToDetail(item)">
 						<div class="imgBox">
 							<image class="img-tip" :src="item.image" mode="widthFix" lazy-load />
 						</div>
 						<view class="tit-tip multi-line-omit">{{ item.title }}</view>
 						<view class="info">
 							<text class="price">￥ <text class="amount">{{ item.price }}</text></text>
-							<text class="want">{{item.wantNum}}人想要</text>
+							<!-- <text class="want">{{item.wantNum}}人想要</text> -->
 						</view>
 						<view class="empBox">
 							<view class="avatar">
-								<image class="avatar" :src="item.image" mode="widthFix" lazy-load />
+								<image class="avatar" :src="item.avatar" mode="widthFix" lazy-load />
 							</view>
 							<view class="name one-line-omit">{{item.empName}}</view>
 						</view>
@@ -66,6 +68,7 @@
 </template>
 
 <script>
+	const localHomeListKey = '__local_home_list';
 	export default {
 		components: {},
 		data() {
@@ -100,95 +103,7 @@
 					},
 				],
 				loadStatus: 'loadmore',
-				list: [{
-						empName: '摸鱼小狗',
-						price: '35.66',
-						title: 'CINESSD 男拖鞋2022新款时尚时尚最时尚',
-						wantNum: 0,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/43390/15/19929/131606/6370b921Eefed6acc/8e9780a1736357e6.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '萨达',
-						price: '75.20',
-						title: '加湿器',
-						wantNum: 3,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/208109/6/29643/155027/63ec3d92F817bd559/90a96c4dd880e40f.jpg!q70.dpg.webp',
-					},
-					{
-						empName: 'dasf',
-						price: '385.36',
-						title: '气囊防摔超薄保护套镜头全包透明软壳',
-						wantNum: 43,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/5972/32/17361/80842/626deb75E66225786/e7f1ff06504a1cca.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '周四',
-						price: '784.03',
-						title: '小米Redmi Buds3青春版 真无线蓝牙耳机 入耳式耳机 蓝牙耳机 小米无线耳机 蓝牙5.2 苹果华为手机通用',
-						wantNum: 5,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/97453/11/35123/120822/63eb4ec8F554a9a71/5c0332fa1b04d502.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '你好',
-						price: '91.00',
-						title: '海尔（Haier）大容量囤货海尔（Haier）冰箱京东小家双开门冰箱532升电冰箱一级变频大超薄家用冰箱风冷无霜 BCD-532WGHSS8EL9U1',
-						wantNum: 33,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/97453/11/35123/120822/63eb4ec8F554a9a71/5c0332fa1b04d502.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '问问',
-						price: '1.52',
-						title: '卫龙魔芋爽辣条休闲零食香辣素毛肚180g/袋约12小包即食小零食',
-						wantNum: 45,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/97453/11/35123/120822/63eb4ec8F554a9a71/5c0332fa1b04d502.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '问问',
-						price: '661.90',
-						wantNum: 35,
-						type: 1,
-						title: '卫龙魔芋爽辣条休闲零食香辣素毛肚180g/袋约12小包即食小零食',
-						image: 'https://img13.360buyimg.com/n2/s370x370_jfs/t1/51330/4/17889/64744/63ca2564F4cfd8ce3/a9ed18603e2855f8.jpg!q70.jpg.webp',
-					},
-					{
-						empName: '哈哈哈哈',
-						price: '164.37',
-						title: '鞋子鞋子鞋子',
-						wantNum: 3,
-						type: 1,
-						image: 'https://img10.360buyimg.com/n2/s370x370_jfs/t1/195846/4/32797/40099/63e348fbF14993564/472de8ed0c40f206.jpg!q70.jpg',
-					},
-					{
-						empName: '试试',
-						price: '1678.00',
-						title: '优资莱（UZERO） 优资莱绿茶保湿礼盒洁面乳爽肤水乳液精华套装补水护肤品女 八件套礼盒',
-						wantNum: 7,
-						type: 3,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/200469/24/30778/90107/63989b02E6f47594f/cb91265ba594e7cb.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '筛选',
-						price: '924.64',
-						title: '兰蔻小黑瓶50ml 修护保湿',
-						wantNum: 35,
-						type: 1,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/160110/20/21070/176153/63eb2b42F599b4cb6/f466a798d5f63d83.jpg!q70.dpg.webp',
-					},
-					{
-						empName: '丽丽',
-						price: '8243.50',
-						title: '加湿器',
-						wantNum: 3,
-						type: 2,
-						image: 'https://img14.360buyimg.com/mobilecms/s360x360_jfs/t1/54121/6/21408/129268/631593a7E87b6d12a/b3c650bf886c6a5f.jpg!q70.dpg.webp',
-					},
-				],
+				list: [],
 				flowData: {
 					list: [], // 数据值
 					column: 2, // 瀑布列数
@@ -217,12 +132,42 @@
 			}
 		},
 		onLoad() {
-			this.flowData.list = this.deepCopy(this.list);
-			this.$nextTick(() => {
-				this.initData(this.list); // 数据初始化
-			});
+			this.getHomepageGoods();
+			setTimeout(() => {
+				this.$nextTick(() => {
+					this.initData(this.list); // 数据初始化
+				});
+			}, 200);
 		},
 		methods: {
+			getHomepageGoods() {
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/goods/home",
+					success: (res) => {
+						this.list = [];
+						for (let item of res.data.data) {
+							let newitem = {
+								id: item.goods_Id,
+								empName: item.user_Name,
+								price: item.goods_Price,
+								title: item.goods_Name,
+								type: 1,
+								image: item.image_Data,
+								avatar: item.head_Portrait
+							};
+							this.list.push(newitem);
+						}
+						this.flowData.list = this.list;
+						// uni.setStorageSync(localHomeListKey, this.list);
+					}
+				})
+			},
+			navToDetail(item) {
+				console.log(item);
+				uni.navigateTo({
+					url: '/pages/product-details/product-details?item=' + encodeURIComponent(JSON.stringify(item))
+				});
+			},
 			searchFocusFun() {
 				uni.navigateTo({
 					url: '/pages/search/search'
@@ -343,27 +288,33 @@
 				justify-content: center;
 				position: relative;
 				overflow: hidden;
-				background-image: linear-gradient(135deg, rgb(16,186,177), rgba(16,186,177,0.4));
+				background-image: linear-gradient(135deg, rgb(16, 186, 177), rgba(16, 186, 177, 0.4));
+
 				// background: rgb(28, 192, 181);
 				.name {
 					width: 100%;
 					text-align: center;
 				}
-				.content{
+
+				.content {
 					text-align: center;
 				}
 			}
-			.module2{
-				background-image: linear-gradient(135deg, rgb(240,220,23), rgba(240,220,23,0.3));
+
+			.module2 {
+				background-image: linear-gradient(135deg, rgb(240, 220, 23), rgba(240, 220, 23, 0.3));
 			}
-			.module3{
-				background-image: linear-gradient(135deg, rgb(239,149,138), rgba(239,149,138,0.3));
+
+			.module3 {
+				background-image: linear-gradient(135deg, rgb(239, 149, 138), rgba(239, 149, 138, 0.3));
 			}
-			.module4{
-				background-image: linear-gradient(135deg, rgb(245,109,93), rgba(245,109,93,0.3));
+
+			.module4 {
+				background-image: linear-gradient(135deg, rgb(245, 109, 93), rgba(245, 109, 93, 0.3));
 			}
-			.module5{
-				background-image: linear-gradient(135deg, rgb(98,124,245), rgba(98,124,245,0.3));
+
+			.module5 {
+				background-image: linear-gradient(135deg, rgb(98, 124, 245), rgba(98, 124, 245, 0.3));
 			}
 		}
 

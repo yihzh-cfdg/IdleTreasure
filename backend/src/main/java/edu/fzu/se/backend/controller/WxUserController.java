@@ -1,7 +1,5 @@
 package edu.fzu.se.backend.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import edu.Utils.ResultUtils;
-import edu.Utils.ResultVo;
 import edu.fzu.se.backend.bean.WxUser;
 import edu.fzu.se.backend.service.WxUserService;
 import edu.fzu.se.backend.service.serviceimpl.WxUserServiceimpl;
@@ -11,10 +9,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -55,7 +50,6 @@ public class WxUserController {
     })
     @PostMapping("/login")
     public String login(@RequestBody Map<String, String> userinfo){
-        //构造查询条件
         Long x = wxUserService.loginService(userinfo.get("username"),userinfo.get("password"));
         if(x != null){
             return x.toString();
@@ -63,4 +57,10 @@ public class WxUserController {
         else throw new RuntimeException("用户名或密码错误");
     }
 
+    @GetMapping("/get")
+    public WxUser getUser(@RequestParam("id") Long id){
+        WxUser u = wxUserService.getById(id);
+        u.setUser_Key("");
+        return u;
+    }
 }
