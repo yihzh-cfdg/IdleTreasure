@@ -1,9 +1,15 @@
 <template>
+	
+	
   <view class="mypage-container">
-    <!-- 自定义头部 -->
-    <view class="head">
-		<text class="wenzi" >订单详情</text>
-    </view>
+
+	<!-- 顶部导航栏 -->
+	<uni-nav-bar dark :fixed="true"  background-color="#f5f5f5" status-bar left-width="250rpx">
+		<block slot="left">
+			<uni-icons  @click="goBack()" class="back-icons" size="20" type="back"></uni-icons>
+			<text class="navi-header-text" style="font-size:1.15em" >订单详情</text>
+		</block>
+	</uni-nav-bar>
 	
 	<!-- 订单状态 -->
 	<view class="ordercard">
@@ -217,7 +223,9 @@
 	
 		},
 		methods: {
-			
+			goBack() {
+				uni.navigateBack();
+			}
 		}
 	}
 </script>
@@ -226,20 +234,12 @@
 <style scoped>
 	.mypage-container {
 	  background-color: #f2f2f2;
-		margin-top: 20px;
 		flex: 1;
 	}
-	
-  .head {
-    
-	display: flex;
-	height: 50px;
-	font-size: 50rpx;
-	margin-top: -30px;
-	background-color: #fff;
-	
-
-  }
+	.navi-header-text{
+		color: #000;
+		/* 订单详情文字颜色 */
+	}
 	.wenzi{
 		font-size: 20px; 
 		display: flex;
@@ -250,7 +250,6 @@
 	}
 	.ordercard{
 		background-color: #fff;
-		margin-top: 10px;
 	}
 	.orderconition {
 	  display: flex;

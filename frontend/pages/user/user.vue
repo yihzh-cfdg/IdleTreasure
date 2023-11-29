@@ -170,7 +170,7 @@
 			},
 			clicksell() {
 				uni.navigateTo({
-					url: '',
+					url: '/pages/order-list/order-list',
 				}); //实现跳转我卖出的
 			},
 			clickpublish() {
@@ -180,7 +180,7 @@
 			},
 			clickbuy() {
 				uni.navigateTo({
-					url: '',
+					url: '/pages/order-list/order-list',
 				}); //实现跳转我买到的
 			},
 			clickcollect() {
@@ -203,7 +203,7 @@
 
 <style scoped>
 	.head {
-		height: 140rpx;
+		height: 30px;
 	}
 
 	.mypage-container {
