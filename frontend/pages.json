@@ -152,6 +152,14 @@
 			"style" : 
 			{
 				"navigationStyle": "custom",
+        "enablePullDownRefresh" : false
+      }
+    },
+    {
+			"path" : "pages/chat/chat",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
 		}
