@@ -1,27 +1,27 @@
 package edu.fzu.se.backend.service.serviceimpl;
-
+import edu.fzu.se.backend.bean.WxUser;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 import edu.fzu.se.backend.service.WxUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import edu.fzu.se.backend.bean.WxUser;
 import edu.fzu.se.backend.mapper.WxUserMapper;
+import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
 @Service
-public class WxUserServiceimpl implements WxUserService {
+public class WxUserServiceimpl  extends ServiceImpl<WxUserMapper, WxUser> implements  WxUserService {
     @Autowired
     private  WxUserMapper wxUserMapper;
     @Override
     //登录
-    public boolean loginService(String name,String password){
-        List<WxUser> users = wxUserMapper.selectAll();
-        for (WxUser u : users) {
-            if (name.equals(u.getUser_Name()) && password.equals(u.getUser_Key())) {
-                return true;
-            }
-        }
-        return false;
+    public Long loginService(String name,String password){
+        String md5PW = DigestUtils.md5DigestAsHex(password.getBytes());
+        WxUser queryUser = wxUserMapper.selectByUserName(name);
+        if(md5PW.equals(queryUser.getUser_Key()))
+            return queryUser.getUser_ID();
+        else
+            throw new RuntimeException("用户名或密码错误");
     }
     //注册
     @Override
@@ -44,4 +44,3 @@ public class WxUserServiceimpl implements WxUserService {
         return false;
     }
 }
-

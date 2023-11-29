@@ -1,5 +1,5 @@
 package edu.fzu.se.backend.bean;
-
+import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,6 +8,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+
+
 import org.springframework.stereotype.Component;
 @Component
 @Data
@@ -36,5 +39,5 @@ public class Goods {
     private String Classification;
 
     @Schema(name = "Release_Time", description = "发布时间")
-    private String Release_Time;
+    private Date Release_Time;
 }

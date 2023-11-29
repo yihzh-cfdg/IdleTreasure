@@ -15,7 +15,8 @@
 			<uni-list-chat :avatar-circle="true" 
 			:title="userInfo.name" :avatar="userInfo.avatar" 
 			:note="userInfo.account"clickable link to="/pages/set/info-set">
-				<uni-icons class="back-icons" size="18" type="right" color="#bbbec6"></uni-icons>
+				<uni-icons class="next-icons" size="17" type="right" color="#bbbec6" 
+				style="margin-right:-5px;margin-top:10px;"></uni-icons>
 			</uni-list-chat>
 
 		</view>	
@@ -37,6 +38,9 @@
 </template>
 
 <script>
+	import {
+		mapMutations
+	} from "vuex";
 	export default {
 		data() {
 			return {
@@ -49,21 +53,24 @@
 			};
 		},
 		methods:{
+			...mapMutations(["logout"]),
 			goBack(){
 				uni.navigateBack();
 			},
 			logOut(){
+				let that = this;
 				//退出登录
 				uni.showModal({
 					title: '提示',
-					content: '确认退出登陆？',
+					content: '确认退出登录？',
 					success: function(res) {
 						if (res.confirm) {
+							that.logout();
 							uni.removeStorage({
 								key: 'token',
 								success(res) {
 									uni.redirectTo({
-										url: ''//跳转到登录页面
+										url: '/pages/region/region'//跳转到登录页面
 									})
 								}
 							})
@@ -83,7 +90,5 @@
 		color: #000;
 		/* 设置文字颜色 */
 	}
-
-
 </style>
 

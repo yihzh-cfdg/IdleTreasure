@@ -3,8 +3,8 @@
 		<view class="search-container">
 			<!-- 搜索框 -->
 			<view class="search-container-bar">
-				<uni-search-bar ref="searchBar" style="flex:1;" radius="100" v-model="searchText" :focus="focus" 
-				 clearButton="auto" cancelButton="always" @clear="clear" @confirm="confirm" @cancel="cancel"/>
+				<uni-search-bar ref="searchBar" style="flex:1;" radius="100" v-model="searchText" :focus="focus"
+					clearButton="auto" cancelButton="always" @clear="clear" @confirm="confirm" @cancel="cancel" />
 			</view>
 		</view>
 		<view class="search-body">
@@ -12,17 +12,21 @@
 			<view class="word-container" v-if="localSearchList.length">
 				<view class="word-container_header">
 					<text class="word-container_header-text">搜索历史</text>
-					<uni-icons v-if="!localSearchListDel" @click="localSearchListDel = true" class="search-icons" style="padding-right: 0;"
-					 :color="iconColor" size="18" type="trash"></uni-icons>
+					<uni-icons v-if="!localSearchListDel" @click="localSearchListDel = true" class="search-icons"
+						style="padding-right: 0;" :color="iconColor" size="18" type="trash"></uni-icons>
 					<view v-else class="flex-center flex-row" style="font-weight: 500;justify-content: space-between;">
-						<text style="font-size: 22rpx;color: #666;padding-top:4rpx;padding-bottom:4rpx;padding-right:20rpx;" @click="LocalSearchListClear">全部删除</text>
-						<text style="font-size: 22rpx;color: #c0402b;padding-top:4rpx;padding-bottom:4rpx;padding-left:20rpx;" @click="localSearchListDel = false">完成</text>
+						<text
+							style="font-size: 22rpx;color: #666;padding-top:4rpx;padding-bottom:4rpx;padding-right:20rpx;"
+							@click="LocalSearchListClear">全部删除</text>
+						<text
+							style="font-size: 22rpx;color: #c0402b;padding-top:4rpx;padding-bottom:4rpx;padding-left:20rpx;"
+							@click="localSearchListDel = false">完成</text>
 					</view>
 				</view>
-	
+
 				<view class="word-container_body">
-					<view class="flex-center flex-row word-container_body-text" v-for="(word,index) in localSearchList" :key="index"
-					 @click="LocalSearchlistItemClick(word,index)">
+					<view class="flex-center flex-row word-container_body-text" v-for="(word,index) in localSearchList"
+						:key="index" @click="LocalSearchlistItemClick(word,index)">
 						<text class="word-display" :key="word">{{word}}</text>
 						<uni-icons v-if="localSearchListDel" size="12" type="closeempty" />
 					</view>
@@ -46,7 +50,7 @@
 	export default {
 		data() {
 			return {
-				localSearchList: uni.getStorageSync(localSearchListKey),
+				localSearchList: [],
 				localSearchListDel: false,
 				searchText: '',
 				iconColor: '#999999',
@@ -54,7 +58,22 @@
 				focus: true, //	是否自动聚焦
 			}
 		},
+		onLoad() {
+			this.getHistory()
+		},
 		methods: {
+			getHistory() {
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/history/user/" + this.$store.state.token,
+					success: (res) => {
+						console.log(res.data);
+						for (let item of res.data.data)
+							this.localSearchList.push(item.keyword);
+						console.log(this.localSearchList);
+						uni.setStorageSync(localSearchListKey, this.localSearchList);
+					},
+				})
+			},
 			clear(res) {
 				console.log("res: ", res);
 			},
@@ -75,7 +94,10 @@
 					if (this.searchText !== value)
 						this.searchText = value;
 					this.localSearchListManage(value);
-				} 
+					uni.navigateTo({
+						url:"/pages/result/result?value="+ value
+					})
+				}
 				uni.hideKeyboard();
 				this.loadList(this.searchText);
 			},
@@ -86,10 +108,21 @@
 					arrUnique(this.localSearchList);
 					if (this.localSearchList.length > 10)
 						this.localSearchList.pop();
-				} 
-				else 
+				} else
 					this.localSearchList = [word];
 				uni.setStorageSync(localSearchListKey, this.localSearchList);
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/history/insert",
+					method: "POST",
+					data: {
+						user_ID: this.$store.state.token,
+						search_ID: 0,
+						keyword: word
+					},
+					success: (res) => {
+						console.log("成功插入历史记录!");
+					}
+				})
 			},
 			LocalSearchListClear() {
 				uni.showModal({
@@ -126,8 +159,9 @@
 </script>
 
 <style lang="scss">
-	$search-bar-height:52px;
-	$word-container_header-height:72rpx;
+	$search-bar-height: 52px;
+	$word-container_header-height: 72rpx;
+
 	.container {
 		flex: 1;
 		background-color: #f7f7f7;
@@ -152,7 +186,7 @@
 		border-width: 0;
 	}
 
-	
+
 	.uni-input-placeholder {
 		font-size: 28rpx;
 	}
