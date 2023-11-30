@@ -14,7 +14,7 @@ public class GiteeImgBed {
     }
 
     //码云私人令牌，需要补充
-    public static final String ACCESS_TOKEN = "5f17d7d93c4b77fb8cd6168951a67605";
+    public static final String ACCESS_TOKEN = "";
     //个人空间名，需要补充
     public static final String OWNER = "yihzh";
     //仓库名，需要补充

@@ -148,19 +148,17 @@
 			}
 		},
 		{
-			"path" : "pages/order-list/order-list",
-			"style" : 
-			{
+			"path": "pages/order-list/order-list",
+			"style": {
 				"navigationStyle": "custom",
-        "enablePullDownRefresh" : false
-      }
-    },
-    {
-			"path" : "pages/chat/chat",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/chat/chat",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		}
 	],
