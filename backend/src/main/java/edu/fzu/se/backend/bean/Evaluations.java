@@ -24,4 +24,8 @@ public class Evaluations {
     private String Buyer_Evaluation;
     @Schema(name = "Seller_Evaluation",description = "卖家评价")
     private String Seller_Evaluation;
+//    @Schema(name = "Buyer_Status",description = "买家评价状态")
+//    private String Buyer_Status;
+//    @Schema(name = "Seller_Status",description = "卖家评价状态")
+//    private String Seller_Status;
 }

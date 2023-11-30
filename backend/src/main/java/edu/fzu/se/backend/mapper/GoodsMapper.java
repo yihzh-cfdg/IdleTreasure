@@ -2,10 +2,9 @@ package edu.fzu.se.backend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import edu.fzu.se.backend.bean.FrontendGood;
-import org.apache.ibatis.annotations.*;
-import io.swagger.v3.oas.annotations.Operation;
-import edu.fzu.se.backend.bean.Images;
 import edu.fzu.se.backend.bean.Goods;
+import edu.fzu.se.backend.bean.Images;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -58,7 +57,7 @@ public interface GoodsMapper extends BaseMapper<Goods> {
             "INNER JOIN users u ON g.Seller_ID = u.User_ID " +
             "INNER JOIN goods_images_conns gic ON g.Goods_ID = gic.Goods_ID " +
             "INNER JOIN images i ON gic.Image_ID = i.Image_ID " +
-            "WHERE g.Goods_Name LIKE CONCAT('%', #{Keyword}, '%')")
+            "WHERE MATCH(g.Goods_Name) AGAINST(#{Keyword} IN NATURAL LANGUAGE MODE)")
     List<FrontendGood> selectByKeyword(String Keyword);
 
     //根据商品分类查询商品记录

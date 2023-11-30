@@ -1,8 +1,9 @@
 package edu.fzu.se.backend.mapper;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import edu.fzu.se.backend.bean.WxUser;
 import org.apache.ibatis.annotations.*;
-import io.swagger.v3.oas.annotations.Operation;
+
 import java.util.List;
 @Mapper
 public interface WxUserMapper  extends BaseMapper<WxUser>{
@@ -18,8 +19,8 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
     @Select("SELECT * FROM Users WHERE FZU_Key=#{FzuKey}")
     WxUser selectByFzuKey(String FzuKey);
 
-    //根据用户名查询用户
-    @Select("SELECT User_ID, User_Key FROM users WHERE User_Name LIKE #{username}")
+    //根据用户名模糊匹配查询用户
+    @Select("SELECT User_ID, User_Key FROM users WHERE MATCH(User_Name) AGAINST(#{username} IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION)")
     WxUser selectByUserName(String username);
 
     //根据关键字查询用户
@@ -38,7 +39,7 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
     //根据用户ID更新用户信息
     @Update("UPDATE Users SET User_Name=#{User_Name}, User_Key=#{User_Key}, FZU_Key=#{FZU_Key}, " +
             "Head_Portrait=#{Head_Portrait}, Delivery_Address=#{Delivery_Address}, Shipping_Address=#{Shipping_Address}, " +
-            "Like_Count=#{Like_Count}, Beliked_Count=#{Beliked_Count}, phone=#{phone} " +
+            "Like_Count=#{Like_Count}, Beliked_Count=#{Beliked_Count}, /*Transaction_Count=#{Transaction_Count},Good_Review_Count=#{Good_Review_Count},Good_Review_Rate=#{Good_Review_Rate},*/phone=#{phone} " +
             "WHERE User_ID=#{User_ID}")
     int updateById(WxUser user);
     //根据用户ID更新Like_Count
