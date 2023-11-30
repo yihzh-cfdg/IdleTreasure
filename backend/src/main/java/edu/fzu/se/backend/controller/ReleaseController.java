@@ -12,7 +12,7 @@ public class ReleaseController {
     @Autowired
     ReleaseServiceImpl releaseService;
     @PostMapping
-    public String releaseGood(@RequestBody Goods goods) {
-        return  releaseService.releaseGoods(goods);
+    public String releaseGood(@RequestBody Goods goods) throws Exception {
+        return releaseService.releaseGoods(goods);
     }
 }

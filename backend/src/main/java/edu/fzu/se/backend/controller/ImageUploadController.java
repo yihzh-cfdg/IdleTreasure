@@ -7,10 +7,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 @Tag(name = "ImageUploadController", description = "图片上传控制器")
@@ -24,12 +27,13 @@ public class ImageUploadController {
     @Operation(summary = "上传图片")
     @Parameters({
             @Parameter(name = "file", description = "图片文件", required = true),
-            @Parameter(name = "id", description = "对应id", required = true),
+            @Parameter(name = "id", description = "对应商品id", required = true),
             @Parameter(name = "type", description = "类型: 1.用户，2.商品，3.平台，4.其他")
     })
-    @PostMapping("/uploadImage")
-    public String uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id, @RequestParam("type") Integer type) throws Exception {
-        String url = imageService.upload(file, type, id);
+    @PostMapping(value = "/uploadImage", consumes = "multipart/form-data")
+    public List<String> uploadImage(@RequestParam("file") List<MultipartFile> files, HttpServletRequest request) throws Exception {
+        List<String> url = imageService.upload(files, request.getParameter("type"), request.getParameter("id"));
+
         return url;
     }
 

@@ -82,6 +82,7 @@
 	export default {
 		data() {
 			return {
+				goodId: 0,
 				count: 4,
 				imgList: [],
 				tempImgList: [],
@@ -125,63 +126,93 @@
 				this.$refs.inputFee.close();
 			},
 			uploadImg() {
-				uni.uploadFile({
-					url: this.$store.state.baseUrl + "/api/upload",
-					files: this.tempImgList,
-					name: "file",
-					header: {
-						'content-type': 'multipart/form-data',
-					},
-					success: (res) => {
-						let ress = JSON.parse(uploadFileRes.data.data);
-						this.imgList.push(ress.data);
-						return 1;
+				return new Promise((resolve, reject) => {
+					var filelist = [];
+					for (var i = 0; i < this.tempImgList.length; i++) {
+						var obj = {};
+						obj.name = "file";
+						obj.uri = this.tempImgList[i];
+						filelist.push(obj)
 					}
+					uni.uploadFile({
+						url: this.$store.state.baseUrl + "/api/upload/uploadImage",
+						fileType: 'image',
+						files: filelist,
+						name: "file",
+						formData: {
+							type: 2,
+							id: this.goodId
+						},
+						success: (res) => {
+							let ress = JSON.parse(res.data)
+							if (ress.code == 200) {
+								console.log(res.data.data)
+								this.imgList.push(res.data.data);
+								resolve(1);
+							} else {
+								console.log(res.data)
+								resolve(0);
+							}
+						},
+						fail: (res) => {
+							resolve(0);
+						}
+					});
 				})
-				return 0;
 			},
 			release() {
 				let nowtime = moment().format("YYYY-MM-DDTHH:mm:ss.SSS+08");
 				uni.showLoading({
 					title: "发布中"
 				});
-				if (this.uploadImg() == 1) {
-					uni.request({
-						url: this.$store.state.baseUrl + "/api/release",
-						method: "POST",
-						data: {
-							goods_Price: this.price,
-							goods_Name: this.releaseText.slice(0, 20),
-							seller_ID: this.$store.state.userInfo.token,
-							classification: this.selectedCategory,
-							release_Time: nowtime,
-							goods_Description: this.releaseText
-						},
-						success: (res) => {
-							console.log(res.data);
-							if (res.data.code == 200) {
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/release",
+					method: "POST",
+					data: {
+						goods_Price: this.price,
+						goods_Name: this.releaseText.slice(0, 20),
+						// seller_ID: this.$store.state.userInfo.token,
+						seller_ID: "100000016",
+						classification: this.selectedCategory,
+						release_Time: nowtime,
+						goods_Description: this.releaseText
+					},
+					success: async (res) => {
+						console.log(res.data);
+						uni.hideLoading();
+						if (res.data.code == 200) {
+							this.goodId = res.data.data;
+							uni.showToast({
+								title: "发布成功~",
+								icon: 'success'
+							});
+							let result = await this.uploadImg();
+							console.log(result);
+							if (result == 1) {
 								uni.showToast({
-									title: `发布成功~`,
-									icon: 'success'
+									icon: "success",
+									title: "图片上传成功"
 								});
-								uni.redirectTo({
+								uni.switchTab({
 									url: "/pages/user/user"
 								});
 							} else {
-								uni.showToast({
-									title: `发布失败`,
-									icon: 'error'
-								});
+								setTimeout(()=>{
+									uni.showToast({
+										icon: "error",
+										title: "图片上传失败"
+									});
+								}, 500)
 							}
+						} else {
+							uni.showToast({
+								title: `发布失败`,
+								icon: 'error'
+							});
 						}
-					});
-				}else
-				{
-					uni.showToast({
-						title: `上传图片失败`,
-						icon: 'error'
-					});
-				}
+					}
+				});
+				
 			},
 			chooseImg() {
 				uni.chooseImage({

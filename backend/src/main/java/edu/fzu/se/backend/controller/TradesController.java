@@ -1,4 +1,3 @@
-//商品上传接口功能实现
 package edu.fzu.se.backend.controller;
 
 import edu.fzu.se.backend.bean.Goods;
@@ -26,7 +25,7 @@ public class TradesController {
 
     @Operation(summary = "新增交易")
     @Parameters({
-            @Parameter(name = "goods", description = "商品", required = true)
+            @Parameter(name = "trades", description = "交易", required = true)
     })
     @PostMapping("/add")
     public String addTrade(@RequestBody Trades trades){

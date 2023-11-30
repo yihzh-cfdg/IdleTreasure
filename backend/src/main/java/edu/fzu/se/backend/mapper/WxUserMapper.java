@@ -51,7 +51,7 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
 
     //根据ID更新头像URL
     @Update("UPDATE users SET Head_Portrait=#{Header} WHERE User_ID=#{User_ID}")
-    int updateHeaderById(Long User_ID, String Header);
+    int updateHeaderById(String User_ID, String Header);
 
     //根据手机号查询用户
     @Select("SELECT * FROM users WHERE phone=#{phone}")

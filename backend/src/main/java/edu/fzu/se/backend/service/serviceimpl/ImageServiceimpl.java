@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -35,53 +37,53 @@ public class ImageServiceimpl implements ImageService {
     private ImagesMapper imagesMapper;
     @Autowired
     private WxUserMapper wxUserMapper;
-    public String upload(MultipartFile file, Integer type, Long id) throws Exception
-    {
+
+    public List<String> upload(List<MultipartFile> files, String type, String id) throws Exception {
         String bucketName = ossConfig.getBucketName();
         String endPoint = ossConfig.getEndPoint();
         String accessKeyId = ossConfig.getAccessKeyId();
         String accessKeySecret = ossConfig.getAccessKeySecret();
-
         OSS ossClient = new OSSClientBuilder().build(endPoint, accessKeyId, accessKeySecret);
-        String originalFilename = file.getOriginalFilename();
-        LocalDateTime time = LocalDateTime.now();
-        DateTimeFormatter dft = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        List<String> urls = new ArrayList<>();
+        for (MultipartFile file : files) {
+            String originalFilename = file.getOriginalFilename();
+            LocalDateTime time = LocalDateTime.now();
+            DateTimeFormatter dft = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-        String folder = dft.format(time);
-        String fileName = generateUUID();
-        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-        String uploadFileName = "image/" + folder + "/" + fileName + extension;
-        try {
-            PutObjectResult result = ossClient.putObject(bucketName, uploadFileName, file.getInputStream());
-            //拼装返回路径
-            if (result != null) {
-                String url = "https://"+bucketName+"."+endPoint+"/"+uploadFileName;
-                Images image = new Images(null, originalFilename, url, ImageEnum.getNameByType(type));
-                Long imageID = imagesMapper.insertImage(image);
-                if(imageID < 0) {
-                    throw new RuntimeException("数据库操作失败");
-                }
-                if(type == 2) {
-                    Goods_Images_Conns conn = new Goods_Images_Conns(id, imageID);
-                    if (goodsImagesConnsMapper.insertConnection(conn) < 0)
+            String folder = dft.format(time);
+            String fileName = generateUUID();
+            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            String uploadFileName = "image/" + folder + "/" + fileName + extension;
+            try {
+                PutObjectResult result = ossClient.putObject(bucketName, uploadFileName, file.getInputStream());
+                //拼装返回路径
+                if (result != null) {
+                    String url = "https://" + bucketName + "." + endPoint + "/" + uploadFileName;
+                    Images image = new Images(null, originalFilename, url, ImageEnum.getNameByType(Integer.valueOf(type)));
+                    imagesMapper.insertImage(image);
+                    Long imageID = image.getImage_ID();
+                    if (imageID < 0) {
                         throw new RuntimeException("数据库操作失败");
+                    }
+                    if (type.equals("2")) {
+                        Goods_Images_Conns conn = new Goods_Images_Conns(Long.parseLong(id), imageID);
+                        if (goodsImagesConnsMapper.insertConnection(conn) < 0)
+                            throw new RuntimeException("数据库操作失败");
+                    }
+                    if (type.equals("1")) {
+                        wxUserMapper.updateHeaderById(id, url);
+                    }
+                    urls.add(url);
                 }
-                if(type == 1)
-                {
-                    wxUserMapper.updateHeaderById(id, url);
-                }
-                return url;
+            } catch (IOException e) {
+                log.error("文件上传失败:{}", e.getMessage());
+                throw e;
             }
-
-        } catch (IOException e) {
-            log.error("文件上传失败:{}",e.getMessage());
-            throw e;
-        } finally {
-            //OSS关闭服务，不然会造成OOM
-            ossClient.shutdown();
         }
-        return null;
+        ossClient.shutdown();
+        return urls;
     }
+
     private String generateUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 32);
     }
