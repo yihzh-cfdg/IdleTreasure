@@ -39,7 +39,7 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
     //根据用户ID更新用户信息
     @Update("UPDATE Users SET User_Name=#{User_Name}, User_Key=#{User_Key}, FZU_Key=#{FZU_Key}, " +
             "Head_Portrait=#{Head_Portrait}, Delivery_Address=#{Delivery_Address}, Shipping_Address=#{Shipping_Address}, " +
-            "Like_Count=#{Like_Count}, Beliked_Count=#{Beliked_Count}, /*Transaction_Count=#{Transaction_Count},Good_Review_Count=#{Good_Review_Count},Good_Review_Rate=#{Good_Review_Rate},*/phone=#{phone} " +
+            "Like_Count=#{Like_Count}, Beliked_Count=#{Beliked_Count}, Transaction_Count=#{Transaction_Count},Good_Review_Count=#{Good_Review_Count},Good_Review_Rate=#{Good_Review_Rate},phone=#{phone} " +
             "WHERE User_ID=#{User_ID}")
     int updateById(WxUser user);
     //根据用户ID更新Like_Count
