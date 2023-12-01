@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
+
 @Component
 @Data
 @AllArgsConstructor
@@ -30,7 +33,7 @@ public class Trades {
     private Long Goods_ID;
 
     @Schema(name = "Trade_Time", description = "交易时间")
-    private String Trade_Time;
+    private Date Trade_Time;
 
     @Schema(name = "Paid_Amount", description = "支付金额")
     private Double Paid_Amount;

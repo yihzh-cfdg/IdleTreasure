@@ -26,4 +26,6 @@ public class History {
     @Schema(description = "搜索关键字")
     private String Keyword;
 
+    @Schema(description = "搜索类型:商品历史或搜素历史")
+    private String type;
 }

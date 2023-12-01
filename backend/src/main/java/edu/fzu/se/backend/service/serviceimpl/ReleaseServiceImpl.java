@@ -11,12 +11,13 @@ public class ReleaseServiceImpl implements ReleaseService {
     @Autowired
     GoodsMapper goodsMapper;
     @Override
-    public String releaseGoods(Goods goods)
+    public String releaseGoods(Goods goods) throws Exception
     {
-        if(goodsMapper.insert(goods)>0)
-            return "Success";
+        Long cnt = goodsMapper.insert(goods);
+        if(cnt>0)
+            return goods.getGoods_ID().toString();
         else
-            return "Fail";
+            throw new RuntimeException("商品发布失败");
     }
 
 }

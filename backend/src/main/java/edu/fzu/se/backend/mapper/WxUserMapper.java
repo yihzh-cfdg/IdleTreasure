@@ -21,6 +21,10 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
 
     //根据用户名模糊匹配查询用户
     @Select("SELECT User_ID, User_Key FROM users WHERE MATCH(User_Name) AGAINST(#{username} IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION)")
+    WxUser searchByUserName(String username);
+
+    //根据用户名精准查询用户
+    @Select("SELECT * FROM users WHERE User_Name LIKE #{username}")
     WxUser selectByUserName(String username);
 
     //根据关键字查询用户
@@ -32,8 +36,8 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
     int deleteById(Long User_ID);
 
     //插入用户
-    @Insert("INSERT INTO Users(User_Name, User_Key, FZU_Key, Head_Portrait, Delivery_Address, Shipping_Address, Like_Count, Beliked_Count, phone) " +
-            "VALUES(#{User_Name}, #{User_Key}, #{FZU_Key}, #{Head_Portrait}, #{Delivery_Address}, #{Shipping_Address}, #{Like_Count}, #{Beliked_Count}, #{phone})")
+    @Insert("INSERT INTO Users(User_Name, User_Key, FZU_Key, Delivery_Address, Shipping_Address, Like_Count, Beliked_Count, phone, recipient) " +
+            "VALUES(#{User_Name}, #{User_Key}, #{FZU_Key}, #{Delivery_Address}, #{Shipping_Address}, #{Like_Count}, #{Beliked_Count}, #{phone}, #{recipient})")
     int insertUser(WxUser user);
 
     //根据用户ID更新用户信息
@@ -42,6 +46,7 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
             "Like_Count=#{Like_Count}, Beliked_Count=#{Beliked_Count}, Transaction_Count=#{Transaction_Count},Good_Review_Count=#{Good_Review_Count},Good_Review_Rate=#{Good_Review_Rate},phone=#{phone} " +
             "WHERE User_ID=#{User_ID}")
     int updateById(WxUser user);
+
     //根据用户ID更新Like_Count
     @Update("UPDATE Users SET Like_Count=#{Like_Count} WHERE User_ID=#{User_ID}")
     int updateLikeCountById(String User_ID, int Like_Count);
@@ -52,11 +57,24 @@ public interface WxUserMapper  extends BaseMapper<WxUser>{
 
     //根据ID更新头像URL
     @Update("UPDATE users SET Head_Portrait=#{Header} WHERE User_ID=#{User_ID}")
-    int updateHeaderById(Long User_ID, String Header);
+    int updateHeaderById(String User_ID, String Header);
 
     //根据手机号查询用户
     @Select("SELECT * FROM users WHERE phone=#{phone}")
     WxUser selectByPhone(String phone);
 
+    //根据用户ID更新用户名
+    @Update("UPDATE users SET User_Name=#{User_Name} WHERE User_ID=#{User_ID}")
+    Integer updateNameById(Long User_ID, String User_Name);
 
+    //修改收件人
+    @Update("UPDATE users SET recipient=#{recipient} WHERE User_ID=#{User_ID}")
+    Integer updateRecipientById(Long User_ID, String recipient);
+
+    //修改电话号码
+    @Update("UPDATE users SET phone=#{phone} WHERE User_ID=#{User_ID}")
+    Integer updatePhoneById(Long User_ID, String phone);
+    //修改地址
+    @Update("UPDATE users SET Delivery_Address=#{Address},Shipping_Address=#{Address} WHERE User_ID=#{User_ID}")
+    Integer updateAddressById(Long User_ID, String Address);
 }

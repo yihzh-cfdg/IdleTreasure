@@ -4,7 +4,7 @@
 			<!-- 搜索框 -->
 			<view class="search-container-bar">
 				<uni-search-bar ref="searchBar" style="flex:1;" radius="100" v-model="searchText" :focus="focus"
-					clearButton="auto" cancelButton="always" @clear="clear" @confirm="confirm" @cancel="cancel" />
+					clearButton="auto" cancelButton="always" @clear="clear" @confirm="confirm" @cancel="cancel"/>
 			</view>
 		</view>
 		<view class="search-body">
@@ -64,7 +64,7 @@
 		methods: {
 			getHistory() {
 				uni.request({
-					url: this.$store.state.baseUrl + "/api/history/user/" + this.$store.state.token,
+					url: this.$store.state.baseUrl + "/api/history/latest/search/user/" + this.$store.state.token,
 					success: (res) => {
 						console.log(res.data);
 						for (let item of res.data.data)
@@ -79,7 +79,11 @@
 			},
 			confirm(res) {
 				// 键盘确认
+				console.log(res);
 				this.search(res.value);
+				uni.navigateTo({
+					url: "/pages/result/result?value=" + res.value
+				})
 			},
 			cancel(res) {
 				uni.hideKeyboard();
@@ -94,12 +98,10 @@
 					if (this.searchText !== value)
 						this.searchText = value;
 					this.localSearchListManage(value);
-					uni.navigateTo({
-						url:"/pages/result/result?value="+ value
-					})
 				}
 				uni.hideKeyboard();
 				this.loadList(this.searchText);
+				
 			},
 			localSearchListManage(word) {
 				let list = uni.getStorageSync(localSearchListKey);

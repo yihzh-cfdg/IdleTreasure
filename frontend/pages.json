@@ -1,5 +1,11 @@
 {
 	"pages": [{
+			"path": "pages/region/region",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app"
@@ -101,12 +107,6 @@
 			}
 		},
 		{
-			"path": "pages/region/region",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationStyle": "custom"
@@ -121,7 +121,7 @@
 		{
 			"path": "pages/order/orderdetail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -143,6 +143,20 @@
 			"path": "pages/result/result",
 			"style": {
 				"navigationStyle": "custom",
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order-list/order-list",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/chat/chat",
+			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
@@ -171,7 +185,6 @@
 				"selectedIconPath": "static/tabIcon/cart1.png"
 			},
 			{
-				"text": "Add",
 				"pagePath": "pages/release/release",
 				"iconPath": "static/tabIcon/add.png",
 				"selectedIconPath": "static/tabIcon/add.png"

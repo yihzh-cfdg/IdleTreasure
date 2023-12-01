@@ -2,7 +2,7 @@
 	<view>
 		<view>
 			<view style="display: flex;align-items: center;margin: 20rpx;height: 52rpx;">
-				<img src="../../static/back.png" style="width: 40rpx;height: 40rpx;">
+				<uni-icons  @click="goBack()" class="back-icons" size="40rpx" type="back"></uni-icons>
 				<view style="flex: 1;">
 					<view @click="changeIsClick()"
 						style="background-color: white;border: 1px solid black;height: 52rpx;border-radius: 30rpx;padding: 0 20rpx;display: flex;align-items: center;">
@@ -42,7 +42,7 @@
 					<view class="line-view">{{item.title}}</view>
 					<view style="color: red;margin-top: 10rpx;">￥{{item.price}}</view>
 					<view style="display: flex;align-items: center;margin-top: 10rpx;">
-						<img :src="item.image" style="width: 50rpx;height: 50rpx;border-radius: 50%;object-fit: cover">
+						<img :src="item.header" style="width: 50rpx;height: 50rpx;border-radius: 50%;object-fit: cover">
 						<view style="margin-left: 10rpx;">{{item.empName}}</view>
 					</view>
 				</view>
@@ -132,6 +132,9 @@
 			},
 			changeCurrent(index) {
 				this.current = index
+			},
+			goBack(){
+				uni.navigateBack();
 			}
 		}
 	}

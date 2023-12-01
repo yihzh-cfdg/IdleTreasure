@@ -25,7 +25,7 @@ public class GoodsServiceimpl implements GoodsService {
     @Override
     public List<FrontendGood> maingetgoods(){
         List<FrontendGood> goods = goodsMapper.getHomePageGoods();
-        int sum = 6; //主页要显示的商品数量
+        int sum = 100; //主页要显示的商品数量
         if(goods.size() < sum)
             sum = goods.size();
         Random rand = new Random();

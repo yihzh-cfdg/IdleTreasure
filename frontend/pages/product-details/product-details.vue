@@ -172,13 +172,13 @@
 						id: this.goodId,
 						name: this.productInfo,
 						image: this.imageList[0],
-						price: this.price,
+						price: this.productPrice,
 						deliveryMethod: '自提',
 						address: '',
 						shippingFee: 0
 					};
 					uni.navigateTo({
-						url: '/pages/check/check?item' + encodeURIComponent(JSON.stringify(i))
+						url: '/pages/check/check?item=' + encodeURIComponent(JSON.stringify(i))
 					})
 				}
 			},

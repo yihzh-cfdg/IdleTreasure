@@ -24,7 +24,6 @@
 	export default {
 		data() {
 			return {
-
 				username: '',
 				phone: '',
 				school: '',
@@ -38,7 +37,8 @@
 			}
 
 		},
-		onLoad() {},
+		onLoad() {
+		},
 		onReady() {},
 		methods: {
 			updateUsername(e) {
@@ -64,35 +64,51 @@
 					if (this.school != "福州大学") {
 						uni.showToast({
 							icon: "error",
-							title: "仅支持福州大学"
+							title: "目前仅支持福州大学哦~"
 						})
 					} else {
 						uni.request({
 							url: this.$store.state.baseUrl + "/api/wxUser/register",
 							method: "POST",
 							data: {
-								User_ID: 0,
-								Head_Portrait: "../static/cat.jpg",
-								User_Name: this.username,
-								Delivery_Address: "暂无地址",
-								Shipping_Address: "暂无地址",
-								Fzu_Key: this.studentID,
-								User_Key: this.password,
-								Like_Count: 0,
-								Beliked_Count: 0,
+								user_ID: 0,
+								user_Name: this.username,
+								delivery_Address: "福州大学",
+								shipping_Address: "福州大学",
+								fzu_Key: this.studentID,
+								user_Key: this.password,
+								like_Count: 0,
+								beliked_Count: 0,
 								phone: this.phone
 							},
 							success: (res) => {
+								if (res.data.code == 200) {
+									uni.showToast({
+										icon: "success",
+										title: "注册成功",
+										duration: 1000
+									});
+									uni.reLaunch({
+											url: "/pages/login/login"
+										});
+								} else {
+									uni.showToast({
+										icon: "error",
+										title: "注册失败",
+									});
+									this.phone = "";
+									this.username = "";
+									this.studentID = "";
+									this.password = "";
+									this.school = "";
+								}
+							},
+							fail: (res) => {
 								uni.showToast({
-									icon: "success",
-									title: "注册成功",
+									icon: "error",
+									title: "请检查网络连接！",
 									duration: 1000
 								});
-								setTimeout(() => {
-									uni.reLaunch({
-										url: "/pages/login/login"
-									})
-								}, 1500)
 							}
 						})
 					}

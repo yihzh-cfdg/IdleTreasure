@@ -15,22 +15,22 @@ public class HistoryServiceimpl implements HistoryService {
     //获取所有搜索历史记录
     @Override
     public List<History> getAllHistories() {
-        return historyMapper.selectAll();
+        return historyMapper.selectAllSH();
     }
     //根据用户ID查询全部搜索历史记录
     @Override
     public List<History> getHistoriesByUserId(Long userId) {
-        return historyMapper.selectByUserId(userId);
+        return historyMapper.selectSHByUserId(userId);
     }
     //根据用户ID查询最新的十条搜索历史记录
     @Override
     public List<History> getLatestTenHistoriesByUserId(Long userId) {
-        return historyMapper.selectLatestTenByUserId(userId);
+        return historyMapper.selectLatestTenSHByUserId(userId);
     }
     //根据搜索ID查询搜索历史记录
     @Override
     public History getHistoryById(Long searchId) {
-        return historyMapper.selectById(searchId);
+        return historyMapper.selectSHById(searchId);
     }
     //根据搜索ID删除搜索历史记录
     public int deleteHistoryById(Long searchId) {

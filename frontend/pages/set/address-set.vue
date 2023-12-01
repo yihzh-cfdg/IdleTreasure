@@ -46,6 +46,17 @@
 		onLoad:function(){
 			const token = this.$store.state.userInfo.token;
 			// TODO: 查询用户名、电话、地址
+			uni.request({
+				url:this.$store.state.baseUrl + "/api/wxUser/get-address",
+				data:{
+					id: token
+				},
+				success: (res) => {
+					this.addressInfo.recipient = res.data.data.recipient;
+					this.addressInfo.phoneNumber = res.data.data.phone;
+					this.addressInfo.address = res.data.data.delivery;
+				}
+			})
 		},
 		methods: {
 			goBack() {
@@ -72,16 +83,109 @@
 				this.$refs.inputAddress.close();
 			},
 			confirmRecipientInput(value) {
-				this.addressInfo.recipient = value;
 				this.$refs.inputRecipient.close();
+				uni.showLoading({
+					title: "修改中..."
+				});
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/wxUser/change-recipient",
+					data: {
+						id: this.$store.state.userInfo.token,
+						recipient: value
+					},
+					success: (res) => {
+						uni.hideLoading();
+						if (res.data.code == 200) {
+							this.addressInfo.recipient = value;;
+							uni.showToast({
+								title: "修改成功",
+								icon: 'success'
+							});
+						} else {
+							uni.showToast({
+								title: "修改失败！",
+								icon: 'error'
+							});
+						}
+					},
+					fail: (res) => {
+						uni.hideLoading();
+						uni.showToast({
+							title: "修改失败！",
+							icon: 'error'
+						});
+					}
+				})
 			},
 			confirmPhoneNumberInput(value) {
-				this.addressInfo.phoneNumber = value;
 				this.$refs.inputPhoneNumber.close();
+				uni.showLoading({
+					title: "修改中..."
+				});
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/wxUser/change-phone",
+					data: {
+						id: this.$store.state.userInfo.token,
+						phone: value
+					},
+					success: (res) => {
+						uni.hideLoading();
+						if (res.data.code == 200) {
+							this.addressInfo.phoneNumber = value;
+							uni.showToast({
+								title: "修改成功",
+								icon: 'success'
+							});
+						} else {
+							uni.showToast({
+								title: "修改失败！",
+								icon: 'error'
+							});
+						}
+					},
+					fail: (res) => {
+						uni.hideLoading();
+						uni.showToast({
+							title: "修改失败！",
+							icon: 'error'
+						});
+					}
+				})
 			},
 			confirmAddressInput(value) {
-				this.addressInfo.address = value;
 				this.$refs.inputAddress.close();
+				uni.showLoading({
+					title: "修改中..."
+				});
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/wxUser/change-address",
+					data: {
+						id: this.$store.state.userInfo.token,
+						address: value
+					},
+					success: (res) => {
+						uni.hideLoading();
+						if (res.data.code == 200) {
+							this.addressInfo.address = value;
+							uni.showToast({
+								title: "修改成功",
+								icon: 'success'
+							});
+						} else {
+							uni.showToast({
+								title: "修改失败！",
+								icon: 'error'
+							});
+						}
+					},
+					fail: (res) => {
+						uni.hideLoading();
+						uni.showToast({
+							title: "修改失败！",
+							icon: 'error'
+						});
+					}
+				})
 			}
 		}
 	}

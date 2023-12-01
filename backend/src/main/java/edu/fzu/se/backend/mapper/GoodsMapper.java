@@ -10,14 +10,14 @@ import java.util.List;
 
 
 @Mapper
-public interface GoodsMapper extends BaseMapper<Goods> {
+public interface GoodsMapper{
     //根据卖家ID查询商品记录
     @Select("SELECT * FROM Goods WHERE Seller_ID = #{Seller_ID}")
-    List<Goods> selectGoodsBySellerId(@Param("Seller_ID") Long Seller_ID);
+    List<Goods> selectGoodsBySellerId(Long Seller_ID);
 
     //根据卖家ID查询商品记录数量（我发布的）
     @Select("SELECT COUNT(*) FROM Goods WHERE Seller_ID = #{Seller_ID}")
-    int countGoodsBySellerId(@Param("Seller_ID") Long Seller_ID);
+    Integer countGoodsBySellerId(Long Seller_ID);
     //获取所有商品
     @Select("SELECT * FROM Goods")
     List<Goods> selectAll();
@@ -72,7 +72,10 @@ public interface GoodsMapper extends BaseMapper<Goods> {
     //新增商品记录
     @Insert("INSERT INTO Goods (Goods_Name, Seller_ID, Goods_Price, Goods_Description, Classification, Release_Time) " +
             "VALUES(#{Goods_Name}, #{Seller_ID}, #{Goods_Price}, #{Goods_Description}, #{Classification}, #{Release_Time})")
-    int insertGood(Goods goods);
+    @Options(useGeneratedKeys = true, keyProperty = "Goods_ID")
+    @SelectKey(statement = "SELECT last_insert_id() FROM goods LIMIT 1", before = false,
+            resultType = Long.class, keyColumn = "Goods_ID", keyProperty = "Goods_ID")
+    Long insert(Goods goods);
 
     //根据商品ID更新商品记录
     @Update("UPDATE Goods SET Goods_Name=#{Goods_Name}, Goods_Price=#{Goods_Price}, " +

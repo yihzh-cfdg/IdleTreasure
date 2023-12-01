@@ -11,7 +11,7 @@
 			
 			<uni-search-bar class="uni-mt-10" radius="40" placeholder="搜索你想要的宝贝" clearButton="auto"  bgColor="#f7f7f7"cancelButton="none" @confirm="search" />
 			
-			<view v-for="(list, i) in lists" :key="i" class="aui-news-item">
+			<view v-for="(list, i) in lists" :key="i" class="aui-news-item" @click="navToDetail(list)">
 				<view class="aui-news-item-hd">
 					<image :src="list.img"  class="img"/>
 				</view>
@@ -58,7 +58,7 @@
 						"tit1": "羽依里",
 						"tit2": "飞跃夏日，请您等待卖家发货",
 						"time": "10-31",
-						"img": '/static/分组 9.png'
+						"img": '/static/group9.png'
 					},
 				],
 			}
@@ -74,7 +74,12 @@
 			},
 			search(){
 				uni.navigateTo({
-					url:'',//实现直接启动搜索
+					url:'/pages/set/set-list',//实现直接启动搜索
+				})
+			},
+			navToDetail(){
+				uni.navigateTo({
+					url:"/pages/chat/chat"
 				})
 			}
 		}
@@ -179,7 +184,7 @@
 	}
 	.infor{
 		font-size: 20px;
-		margin-top: 40px;
+		margin-top: 20px;
 		
 	}
 	.time{

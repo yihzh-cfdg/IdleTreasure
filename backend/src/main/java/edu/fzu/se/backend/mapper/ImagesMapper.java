@@ -18,7 +18,7 @@ public interface ImagesMapper {
     @Insert("INSERT INTO Images (Image_Name, Image_Data, Image_Class) " +
             "VALUES(#{Image_Name}, #{Image_Data}, #{Image_Class})")
     @Options(useGeneratedKeys = true, keyProperty = "Image_ID")
-    @SelectKey(statement = "SELECT last_insert_id() FROM Images", before = false,
+    @SelectKey(statement = "SELECT last_insert_id() FROM Images LIMIT 1", before = false,
                 resultType = Long.class, keyColumn = "Image_ID", keyProperty = "Image_ID")
     Long insertImage(Images images);
 
