@@ -16,6 +16,12 @@ public class WxUserServiceimpl  extends ServiceImpl<WxUserMapper, WxUser> implem
     @Override
     //登录
     public Long loginService(String name,String password){
+        if (name == null || name.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            throw new RuntimeException("用户名或密码不能为空");
+        }
+        if (name.length() < 4 || name.length() > 20) {
+            throw new RuntimeException("用户名长度应在4到20个字符之间");
+        }
         String md5PW = DigestUtils.md5DigestAsHex(password.getBytes());
         WxUser queryUser = wxUserMapper.selectByUserName(name);
         if(md5PW.equals(queryUser.getUser_Key()))
@@ -27,8 +33,16 @@ public class WxUserServiceimpl  extends ServiceImpl<WxUserMapper, WxUser> implem
     @Override
     public boolean registerService(WxUser wxUser){
         if (isUsernameExists(wxUser.getUser_Name())) {
-            return false; // 用户名已存在，返回false表示注册失败
+            throw new RuntimeException("用户名已存在");
         }
+        String password = wxUser.getUser_Key();
+        if (password == null || password.trim().isEmpty()) {
+            throw new RuntimeException("密码不能为空");
+        }
+        if (password.length() < 6 || password.length() > 20) {
+            throw new RuntimeException("密码长度应在6到20个字符之间");
+        }
+        wxUser.setUser_Key(DigestUtils.md5DigestAsHex(password.getBytes()));
         int result = wxUserMapper.insertUser(wxUser);
         return result > 0;
     }

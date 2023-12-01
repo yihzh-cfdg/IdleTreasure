@@ -37,7 +37,7 @@ public class WxUserController {
             return "用户名被占用!";
         }
         //密码加密
-        user.setUser_Key(DigestUtils.md5DigestAsHex(user.getUser_Key().getBytes()));
+        //user.setUser_Key(DigestUtils.md5DigestAsHex(user.getUser_Key().getBytes()));
         //存到数据库
         if(wxUserService.saveOrUpdate(user)){
             return "注册成功！";
