@@ -53,7 +53,7 @@
 		},
 		onLoad() {},
 		methods: {
-			...mapMutations(["login"]),
+			...mapMutations(["login", "getUserInfo"]),
 			submit() {
 				uni.request({
 					url: this.$store.state.baseUrl + "/api/wxUser/login",
@@ -73,12 +73,14 @@
 								user_name: this.formData.iphone
 							};
 							this.login(provider);
-							uni.reLaunch({
+							this.getUserInfo();
+							uni.switchTab({
 								url: '/pages/home/home'
 							});
 						} else {
 							uni.showToast({
-								title: res.data.msg,
+								icon:"error",
+								title: "用户名或密码错误",
 								duration: 1000
 							});
 							this.formData.iphone = "";

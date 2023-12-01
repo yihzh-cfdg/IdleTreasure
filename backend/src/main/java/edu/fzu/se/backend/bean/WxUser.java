@@ -52,4 +52,7 @@ public class WxUser {
     */
     @Schema(name = "phone", description = "手机号")
     private String phone;
+
+    @Schema(name = "recipient", description = "收件人")
+    private String recipient;
 }

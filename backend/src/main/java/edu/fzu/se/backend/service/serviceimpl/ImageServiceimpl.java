@@ -70,9 +70,13 @@ public class ImageServiceimpl implements ImageService {
                         if (goodsImagesConnsMapper.insertConnection(conn) < 0)
                             throw new RuntimeException("数据库操作失败");
                     }
-                    if (type.equals("1")) {
+                    else if (type.equals("1")) {
                         wxUserMapper.updateHeaderById(id, url);
                     }
+//                    else if(type.equals("3"))
+//                    {
+//                        pass
+//                    }
                     urls.add(url);
                 }
             } catch (IOException e) {

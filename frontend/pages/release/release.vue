@@ -4,7 +4,7 @@
 		<view class="navigation-bar">
 			<uni-nav-bar dark background-color="#f5f5f5" status-bar left-width="250rpx" right-width="160rpx">
 				<block slot="left">
-					<uni-icons @click="goBack()" class="back-icons" size="20" type="back"></uni-icons>
+					<!-- <uni-icons @click="goBack()" class="back-icons" size="20" type="back"></uni-icons> -->
 					<text class="navi-header-text" style="font-size:1.15em">商品发布</text>
 				</block>
 				<block slot="right">
@@ -103,7 +103,7 @@
 		},
 		methods: {
 			goBack() {
-				uni.navigateBack();
+				// uni.navigateBack();
 			},
 			openPriceInput() {
 				this.$refs.inputPrice.open();
@@ -171,8 +171,7 @@
 					data: {
 						goods_Price: this.price,
 						goods_Name: this.releaseText.slice(0, 20),
-						// seller_ID: this.$store.state.userInfo.token,
-						seller_ID: "100000016",
+						seller_ID: this.$store.state.token,
 						classification: this.selectedCategory,
 						release_Time: nowtime,
 						goods_Description: this.releaseText

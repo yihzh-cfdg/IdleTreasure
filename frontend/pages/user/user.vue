@@ -20,7 +20,7 @@
 						</view>
 						<!-- 用户ID -->
 						<view class="accountName">
-							用户名:{{userinfo.userID}}
+							学号:{{userinfo.userID}}
 						</view>
 						<!-- 用户关注数及粉丝数 -->
 						<view class="fans">
@@ -104,13 +104,12 @@
 				userinfo: { //用户信息
 					username: '土豆小狗',
 					userID: 'Potato_Dog',
-					usertoken: 0,
 					fans: 9,
 					follow: 5,
 				},
 				record: { //收藏与足迹
-					collect: 12,
-					history: 34,
+					collect: "敬请期待",
+					history: "敬请期待",
 				},
 				trade: { //我的交易
 					profile: 9999,
@@ -121,41 +120,31 @@
 			}
 		},
 		onLoad() {
-			if(this.$store.state.userInfo.token == null)
-				this.userinfo.usertoken = "100000015";
-			else
-				this.userinfo.usertoken = this.$store.state.userInfo.token;
-			this.getUserInfo()
+			this.getUserInfo();
+			this.setUserInfo();
 		},
 		methods: {
-			...mapMutations(["addUser"]),
-			getUserInfo() {
-				if (this.$store.state.hasInfo == false) {
-					uni.request({
-						url: this.$store.state.baseUrl + "/api/wxUser/get",
-						method:"GET",
-						data: {
-							id: this.userinfo.usertoken
-						},
-						success: (res) => {
-							console.log(res.data);
-							this.addUser(res.data.data);
-							this.userinfo.userID = this.$store.state.userInfo.fzukey;
-							this.userinfo.username = this.$store.state.userInfo.username;
-							this.userinfo.fans = this.$store.state.userInfo.like;
-							this.userinfo.follow = this.$store.state.userInfo.belike;
-							this.picture = this.$store.state.userInfo.header;
-						}
-					})
-				}
-				else{
-					this.userinfo.userID = this.$store.state.userInfo.fzukey;
-					this.userinfo.username = this.$store.state.userInfo.username;
-					this.userinfo.fans = this.$store.state.userInfo.like;
-					this.userinfo.follow = this.$store.state.userInfo.belike;
-					this.picture = this.$store.state.userInfo.header;
-				}
-
+			...mapMutations(["getUserInfo"]),
+			setUserInfo() {
+				const user = this.$store.state.userInfo;
+				this.userinfo = {
+					username: user.username,
+					userID: user.userID,
+					token: user.token,
+					fans: user.fans,
+					follow: user.follow,
+				};
+				this.record = {
+					collect: user.collect,
+					history: user.history
+				};
+				this.trade = {
+					profile: user.profile,
+					publish: user.publish,
+					sell: user.sell,
+					buy: user.buy
+				};
+				this.picture = user.header;
 			},
 			userInformation() {
 				uni.navigateTo({
@@ -170,17 +159,17 @@
 			},
 			clicksell() {
 				uni.navigateTo({
-					url: '/pages/order-list/order-list',
+					url: '/pages/order-list/order-list?type=1',
 				}); //实现跳转我卖出的
 			},
 			clickpublish() {
 				uni.navigateTo({
-					url: '',
+					url: '/pages/order-list/order-list?type=2',
 				}); //实现跳转我发布的
 			},
 			clickbuy() {
 				uni.navigateTo({
-					url: '/pages/order-list/order-list',
+					url: '/pages/order-list/order-list?type=3',
 				}); //实现跳转我买到的
 			},
 			clickcollect() {

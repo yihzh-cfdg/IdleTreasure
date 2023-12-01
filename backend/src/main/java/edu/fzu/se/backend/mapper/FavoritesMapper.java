@@ -17,11 +17,11 @@ import io.swagger.v3.oas.annotations.Operation;
 public interface FavoritesMapper {
     @Operation(summary ="查询指定用户收藏的商品数量（我的收藏数）")
     @Select("SELECT COUNT(*) FROM Favorites WHERE User_ID=#{User_ID}")
-    int countFavoriteByUserId(@Param("User_ID") Long User_ID);
+    Integer countFavoriteByUserId(@Param("User_ID") Long User_ID);
 
     @Operation(summary ="查询指定商品被用户收藏次数（几人想要）")
     @Select("SELECT COUNT(*) FROM Favorites WHERE Goods_ID=#{Goods_ID}")
-    int countFavoriteByGoodsId(@Param("Goods_ID") Long Goods_ID);
+    Integer countFavoriteByGoodsId(@Param("Goods_ID") Long Goods_ID);
 //    以上为11.15更新
     @Operation(summary = "获取所有收藏")
     @Select("SELECT * FROM Favorites")
@@ -42,17 +42,17 @@ public interface FavoritesMapper {
 
     @Operation(summary = "根据收藏id删除收藏")
     @Delete("DELETE FROM Favorites WHERE Favorite_ID=#{Favorite_ID}")
-    int deleteById(Long Favorite_ID);
+    Integer deleteById(Long Favorite_ID);
 
     @Operation(summary = "插入收藏信息")
     @Insert("INSERT INTO Favorites (Favorite_ID, User_ID, Goods_ID, Insert_Time) " +
             "VALUES(#{Favorite_ID}, #{User_ID}, #{Goods_ID}, #{Insert_Time})")
-    int insertFavorite(Favorites favorite);
+    Integer insertFavorite(Favorites favorite);
 
     @Operation(summary = "根据收藏id更新收藏信息")
     @Update("UPDATE Favorites SET User_ID=#{User_ID}, Goods_ID=#{Goods_ID}, Insert_Time=#{Insert_Time} " +
             "WHERE Favorite_ID=#{Favorite_ID}")
-    int updateById(Favorites favorite);
+    Integer updateById(Favorites favorite);
 
 
 }

@@ -28,7 +28,7 @@ public class ImageUploadController {
     @Parameters({
             @Parameter(name = "file", description = "图片文件", required = true),
             @Parameter(name = "id", description = "对应商品id", required = true),
-            @Parameter(name = "type", description = "类型: 1.用户，2.商品，3.平台，4.其他")
+            @Parameter(name = "type", description = "类型: 1.用户，2.商品，3.评价，4.平台")
     })
     @PostMapping(value = "/uploadImage", consumes = "multipart/form-data")
     public List<String> uploadImage(@RequestParam("file") List<MultipartFile> files, HttpServletRequest request) throws Exception {

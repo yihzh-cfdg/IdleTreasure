@@ -19,37 +19,31 @@ public class HistoryController {
     @Autowired
     private HistoryMapper historyMapper;
 
-    @Operation(summary = "获取所有历史记录")
-    @GetMapping("/all")
-    public List<History> getAllHistory() {
-        return historyMapper.selectAll();
-    }
-
-    @Operation(summary = "根据用户ID获取历史记录")
+    @Operation(summary = "根据用户ID获取商品历史记录")
     @Parameters({
             @Parameter(name = "userId", description = "用户ID", required = true)
     })
-    @GetMapping("/user/{userId}")
-    public List<History> getUserHistory(@PathVariable("userId") Long userId) {
-        return historyMapper.selectByUserId(userId);
+    @GetMapping("/user/item/{userId}")
+    public List<History> getUserSearchHistory(@PathVariable("userId") Long userId) {
+        return historyMapper.selectIHByUserId(userId);
     }
 
-    @Operation(summary = "根据用户ID获取最新的10条历史记录")
+    @Operation(summary = "根据用户ID获取最新的10条搜索历史记录")
     @Parameters({
             @Parameter(name = "userId", description = "用户ID", required = true)
     })
-    @GetMapping("/latest/user/{userId}")
-    public List<History> getLatestTenUserHistory(@PathVariable("userId") Long userId) {
-        return historyMapper.selectLatestTenByUserId(userId);
+    @GetMapping("/latest/search/user/{userId}")
+    public List<History> getLatestTenUserSearchHistory(@PathVariable("userId") Long userId) {
+        return historyMapper.selectLatestTenSHByUserId(userId);
     }
 
-    @Operation(summary = "根据ID获取历史记录")
+    @Operation(summary = "根据历史记录ID获取历史记录")
     @Parameters({
             @Parameter(name = "searchId", description = "历史记录ID", required = true)
     })
     @GetMapping("/id/{searchId}")
     public History getHistoryById(@PathVariable("searchId") Long searchId) {
-        return historyMapper.selectById(searchId);
+        return historyMapper.selectSHById(searchId);
     }
 
     @Operation(summary = "根据ID删除历史记录")
@@ -66,7 +60,7 @@ public class HistoryController {
             @Parameter(name = "history", description = "历史记录", required = true)
     })
     @PostMapping("/insert")
-    public int insertHistory(@RequestBody History history) {
+    public int insertSearchHistory(@RequestBody History history) {
         return historyMapper.insertHistory(history);
     }
 
@@ -75,8 +69,9 @@ public class HistoryController {
             @Parameter(name = "history", description = "历史记录", required = true)
     })
     @PutMapping("/update")
-    public int updateHistory(@RequestBody History history) {
+    public int updateSearchHistory(@RequestBody History history) {
         return historyMapper.updateById(history);
     }
+
 }
 

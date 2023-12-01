@@ -33,6 +33,7 @@
 </template>
 
 <script>
+	import moment from 'moment';
 	export default {
 		data() {
 			return {
@@ -75,9 +76,6 @@
 			}
 		},
 		onLoad: function(opt) {
-			if (opt.item === undefined)
-				opt.item =
-				'{"id":"1000000005","price":20,"name":"钢笔","deliveryMethod":"自提","address": "","image":"https://yihzh-imgbed.oss-cn-fuzhou.aliyuncs.com/image/avatar.jpg", "shippingFee": 0}';
 			const item = JSON.parse(decodeURIComponent(opt.item));
 			console.log(item);
 			this.products = [];
@@ -125,9 +123,9 @@
 								title: `创建订单成功`,
 								icon: 'success'
 							});
-							uni.navigateTo({
+							uni.switchTab({
 								url:"/pages/user/user"
-							})
+							});
 						} else {
 							uni.showToast({
 								title: `创建订单失败`,

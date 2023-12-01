@@ -35,9 +35,9 @@
 				<p class="name-type">卖家</p>
 				<!-- 评价标签 -->
 				<button class="label-button" 
-				:class="{ 'good': sellerLabel === 'good',
-				'average': sellerLabel === 'average',
-				'bad': sellerLabel === 'bad' }">
+				:class="{ 'good': sellerLabel === '好评',
+				'average': sellerLabel === '中评',
+				'bad': sellerLabel === '差评' }">
 				{{ getLabel(sellerLabel) }}</button>
 			
 			</view>
@@ -58,9 +58,9 @@
 					<p class="name-type">买家</p>
 					<!-- 评价标签 -->
 					<button class="label-button"
-					:class="{ 'good': customerLabel === 'good',
-					'average': customerLabel === 'average',
-					'bad': customerLabel === 'bad' }">
+					:class="{ 'good': customerLabel === '好评',
+					'average': customerLabel === '中评',
+					'bad': customerLabel === '差评' }">
 					{{ getLabel(customerLabel) }}</button>
 				
 				</view>
@@ -110,14 +110,14 @@
 				sellerName: '爱吃的丸子',
 				sellerEvaluate: '收获速度很快！',
 				sellerTime:'2023-10-12 21:26:38',
-				sellerLabel: 'good',
+				sellerLabel: '好评',
 				
 				//买家
 				customerAvatar: '../../static/cat2.png',
 				customerName: '丸子',
 				customerEvaluate: '一般般',
 				customerTime:'2023-10-12 19:26:38',
-				customerLabel: 'average',
+				customerLabel: '中评',
 				imageList: [
 				        '../../static/shoes.png',
 				        '../../static/book.png',
@@ -125,17 +125,44 @@
 						'../../static/shoes.png',
 				        // 其他图片地址
 				      ],
+				tradeid: 0
 			};
 		},
+		onLoad:function(opt){
+			this.tradeid = opt.tradeid;
+			uni.request({
+				url:this.$store.state.baseUrl +"/api/evaluations/buyer-seller/"+ this.tradeid,
+				success: (res) => {
+					if(res.data.code == 200){
+						let map = res.data.data;
+						this.image = map.image;
+						this.name = map.name;
+						this.price = map.price;
+						this.sellerName = map.sellerName;
+						this.sellerAvatar = map.sellerAvatar;
+						this.sellerEvaluate = map.sellerEvaluate;
+						this.sellerLabel = map.sellerMark;
+						this.customerName = map.buyerName;
+						this.customerAvatar = map.buyerAvatar;
+						this.customerEvaluate = map.buyerEvaluate;
+						this.customerLabel = map.buyerMark;
+						this.imageList = [];
+						this.imageList.push(this.image);
+					}
+				}
+			})
+		},
 		methods:{
-			goBack(){
-				uni.navigateBack();
+			goBack() {
+				uni.redirectTo({
+					url: "/pages/order/orderdetail?type=id?tradeid=" + this.tradeid
+				});
 			},
 			getLabel(label) {
 			// 获取评价标签的名称
-				 if (label === 'good') {
+				 if (label === '好评') {
 			          return '很赞';
-			        } else if (label === 'average') {
+			        } else if (label === '中评') {
 			          return '一般';
 			        } else {
 			          return '不满';
