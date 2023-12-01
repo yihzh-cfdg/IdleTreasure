@@ -43,6 +43,14 @@ public interface EvaluationsMapper {
     int deleteById(Long Trade_ID);
 
     @Operation(summary = "插入评价记录", description = "向数据库中插入新的评价记录")
+    @Insert("INSERT INTO Evaluations (Trade_ID, Buyer_Evaluation, Seller_Evaluation,Buyer_Status,Seller_Status) " +
+            "VALUES(#{Trade_ID}, #{Buyer_Evaluation}, #{Seller_Evaluation},#{Buyer_Status},#{Seller_Status})")
+    int insertFullEvaluation(Evaluations evaluation);
+
+    @Operation(summary = "根据交易ID更新评价记录", description = "根据交易ID更新数据库中的评价记录")
+    @Update("UPDATE Evaluations SET Buyer_Evaluation=#{Buyer_Evaluation}, Seller_Evaluation=#{Seller_Evaluation} " +
+            "WHERE Trade_ID=#{Trade_ID}")
+    int updateById(Evaluations evaluation);
     @Insert("INSERT INTO Evaluations (Trade_ID) " +
             "VALUES(#{Trade_ID})")
     int insertEvaluation(Long Trade_ID);
