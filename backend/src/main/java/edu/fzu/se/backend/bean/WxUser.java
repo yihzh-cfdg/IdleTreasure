@@ -42,14 +42,12 @@ public class WxUser {
 
     @Schema(name = "Beliked_Count", description = "被关注数量")
     private Integer Beliked_Count;
-    /*
     @Schema(name = "Transaction_Count", description = "交易次数")
     private Integer Transaction_Count; // 交易次数
     @Schema(name = "Good_Review_Count", description = "好评次数")
     private Integer Good_Review_Count; // 好评次数
     @Schema(name = "Good_Review_Rate", description = "好评率")
     private Float Good_Review_Rate; // 好评率
-    */
     @Schema(name = "phone", description = "手机号")
     private String phone;
 
