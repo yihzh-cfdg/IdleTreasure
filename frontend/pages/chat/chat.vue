@@ -258,7 +258,7 @@ export default {
 	border-radius: 30px;
 	background:#409EFF;
 	color:#fff;
-	margin-right: 18px;
+	margin-right: 5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
