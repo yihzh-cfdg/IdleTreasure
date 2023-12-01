@@ -181,8 +181,7 @@
 						color: '#fff'
 					}
 				],
-				lists: [
-				]
+				lists: []
 			}
 		},
 		onLoad: function(opt) {
@@ -204,8 +203,28 @@
 				})
 			}
 		},
+		onShow: function(opt) {
+			if (opt.type == 'json') {
+				const order = JSON.parse(decodeURIComponent(opt.order));
+				this.setInfo(order);
+			} else if (opt.type == "id") {
+				const tradeid = opt.tradeid;
+				uni.request({
+					url: this.$store.state.baseUrl + "/api/trades/id",
+					data: {
+						tradeID: tradeid,
+						userID: this.$store.state.token
+					},
+					success: (res) => {
+						const order = res.data.data;
+						this.setInfo(order);
+					},
+				})
+			}
+		},
 		methods: {
 			setInfo(order) {
+				this.type = order.type;
 				this.lists = [];
 				const sellerInfo = {
 					text2: order.seller,
@@ -217,27 +236,53 @@
 				};
 				this.lists.push(sellerInfo);
 				this.lists.push(tradeInfo);
-				if (order.transactionStatus == '已拍下') {
-					this.active = 0;
-					this.condition = "等待付款";
-					this.buttonGroup[1].text = "去付款";
-				} else if (order.transactionStatus == '已付款') {
-					this.active = 1;
-					this.condition = "等待发货";
-					this.buttonGroup[1].text = "催发货";
-				} else if (order.transactionStatus == '已发货') {
-					this.active = 2;
-					this.condition = "正在配送...";
-					this.buttonGroup[1].text = "确认收货";
-				} else if (order.transactionStatus == '交易成功') {
-					this.active = 3;
-					this.condition = "双方待评价";
-					this.buttonGroup[1].text = "去评价";
-				} else if (order.transactionStatus == '已评价') {
-					this.active = 4;
-					this.condition = "交易完成";
-					this.buttonGroup[1].text = "查看评价";
+				if (this.type == "3") // 我买到的
+				{
+					if (order.transactionStatus == '已拍下') {
+						this.active = 0;
+						this.condition = "等待付款";
+						this.buttonGroup[1].text = "去付款";
+					} else if (order.transactionStatus == '已付款') {
+						this.active = 1;
+						this.condition = "等待发货";
+						this.buttonGroup[1].text = "催发货";
+					} else if (order.transactionStatus == '已发货') {
+						this.active = 2;
+						this.condition = "正在配送...";
+						this.buttonGroup[1].text = "确认收货";
+					} else if (order.transactionStatus == '交易成功') {
+						this.active = 3;
+						this.condition = "双方待评价";
+						this.buttonGroup[1].text = "去评价";
+					} else if (order.transactionStatus == '已评价') {
+						this.active = 4;
+						this.condition = "交易完成";
+						this.buttonGroup[1].text = "查看评价";
+					}
+				} else {
+					if (order.transactionStatus == '已拍下') {
+						this.active = 0;
+						this.condition = "等待付款";
+						this.buttonGroup[1].text = "等待付款";
+					} else if (order.transactionStatus == '已付款') {
+						this.active = 1;
+						this.condition = "等待发货";
+						this.buttonGroup[1].text = "去发货";
+					} else if (order.transactionStatus == '已发货') {
+						this.active = 2;
+						this.condition = "正在配送...";
+						this.buttonGroup[1].text = "等待送货";
+					} else if (order.transactionStatus == '交易成功') {
+						this.active = 3;
+						this.condition = "双方待评价";
+						this.buttonGroup[1].text = "去评价";
+					} else if (order.transactionStatus == '已评价') {
+						this.active = 4;
+						this.condition = "交易完成";
+						this.buttonGroup[1].text = "查看评价";
+					}
 				}
+
 				this.picture = order.productImage;
 				this.order.message = order.productDescription;
 				this.order.site = order.shipping;

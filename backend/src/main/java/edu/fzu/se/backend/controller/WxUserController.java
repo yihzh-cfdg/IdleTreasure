@@ -17,6 +17,7 @@ import java.util.Map;
 
 @Tag(name = "WxUserController", description = "用户控制器")
 @RestController
+@CrossOrigin
 @RequestMapping("/api/wxUser")
 public class WxUserController {
     @Autowired

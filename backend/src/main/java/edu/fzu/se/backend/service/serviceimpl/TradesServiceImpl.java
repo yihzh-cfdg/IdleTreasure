@@ -137,10 +137,15 @@ public class TradesServiceImpl implements TradesService {
         // 如果userid和sellerid相同，就返回买家信息
         // 否则返回卖家信息
         WxUser user;
-        if(tradesMapper.selectById(tradeID).getSeller_ID().equals(userID))
+        String type;
+        if(tradesMapper.selectById(tradeID).getSeller_ID().equals(userID)) {
             user = wxUserMapper.selectById(tradesMapper.selectById(tradeID).getBuyer_ID());
-        else
+            type = "1";
+        }
+        else {
             user = wxUserMapper.selectById(tradesMapper.selectById(tradeID).getSeller_ID());
+            type = "3";
+        }
         Trades trade = tradesMapper.selectById(tradeID);
         Map<String, String> item = new HashMap<>();
         Goods good = goodsMapper.selectById(trade.getGoods_ID());
@@ -157,6 +162,7 @@ public class TradesServiceImpl implements TradesService {
         item.put("shipping", trade.getShipping_Address());
         item.put("delivery", trade.getDelivery_Address());
         item.put("productDescription", good.getGoods_Name());
+        item.put("type", type);
         return item;
     }
 }

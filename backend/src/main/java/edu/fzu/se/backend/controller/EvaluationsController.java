@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Tag(name = "EvaluationsController", description = "评价控制器")
 @RestController
+@CrossOrigin
 @RequestMapping("/api/evaluations")
 public class EvaluationsController {
     @Autowired
@@ -42,8 +43,8 @@ public class EvaluationsController {
             @Parameter(name = "Buyer_Status", description = "买家评价状态", required = true),
             @Parameter(name = "Trade_ID", description = "交易ID", required = true)
     })
-    @PostMapping("/buyer")
-    public String updateBuyerEvaluation(@RequestBody String Buyer_Evaluation, @RequestBody String Buyer_Status, @RequestBody Long Trade_ID) {
+    @GetMapping("/buyer")
+    public String updateBuyerEvaluation(@RequestParam(value = "buyer_Evaluation") String Buyer_Evaluation, @RequestParam(value = "buyer_Status") String Buyer_Status, @RequestParam(value = "trade_ID") Long Trade_ID) {
         if(evaluationService.updateBuyerEvaluation(Buyer_Evaluation, Buyer_Status, Trade_ID)>0)
             return "success";
         else
@@ -57,9 +58,9 @@ public class EvaluationsController {
             @Parameter(name = "Seller_Status", description = "卖家评价状态", required = true),
             @Parameter(name = "Trade_ID", description = "交易ID", required = true)
     })
-    @PostMapping("/seller")
-    public String updateSellerEvaluation(@RequestBody String Seller_Evaluation, @RequestBody String Seller_Status, @RequestBody Long Trade_ID) {
-        if(evaluationService.updateSellerEvaluation(Seller_Evaluation, Seller_Status, Trade_ID)>0)
+    @GetMapping("/seller")
+    public String updateSellerEvaluation(@RequestParam(value = "seller_Evaluation") String Seller_Evaluation, @RequestParam(value = "seller_Status") String Seller_Status, @RequestParam(value = "trade_ID") String Trade_ID) {
+        if(evaluationService.updateSellerEvaluation(Seller_Evaluation, Seller_Status, Long.valueOf(Trade_ID))>0)
             return "success";
         else
             throw new RuntimeException("更新卖家评价记录失败");

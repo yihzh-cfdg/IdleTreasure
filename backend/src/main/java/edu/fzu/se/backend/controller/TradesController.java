@@ -14,6 +14,7 @@ import java.util.Map;
 
 @Tag(name = "TradesController", description = "交易记录控制器")
 @RestController
+@CrossOrigin
 @RequestMapping("/api/trades")
 public class TradesController {
     @Autowired

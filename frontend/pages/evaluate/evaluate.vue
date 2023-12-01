@@ -107,7 +107,6 @@
 					}
 				})
 			}
-			
 			//type=1是卖家评价，type=3是买家评价
 		},
 		methods: {
@@ -120,11 +119,11 @@
 				if (this.type == "1") {
 					uni.request({
 						url: this.$store.state.baseUrl + "/api/evaluations/seller",
-						method: "POST",
+						method: "GET",
 						data: {
-							Seller_Evaluation: this.releaseText,
-							Seller_Status: this.options[this.selectedOption],
-							Trade_ID: this.tradeid
+							seller_Evaluation: this.releaseText,
+							seller_Status: this.options[this.selectedOption],
+							trade_ID: this.tradeid
 						},
 						success: (res) => {
 							uni.showToast({
@@ -135,11 +134,11 @@
 				} else {
 					uni.request({
 						url: this.$store.state.baseUrl + "/api/evaluations/buyer",
-						method: "POST",
+						method: "GET",
 						data: {
-							Buyer_Evaluation: this.releaseText,
-							Buyer_Status: this.realopts[this.selectedOption],
-							Trade_ID: this.tradeid
+							buyer_Evaluation: this.releaseText,
+							buyer_Status: this.realopts[this.selectedOption],
+							trade_ID: this.tradeid
 						},
 						success: (res) => {
 							uni.showToast({

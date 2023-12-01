@@ -14,6 +14,7 @@ import java.util.List;
 
 @Tag(name = "FavoriteController", description = "收藏控制器")
 @RestController
+@CrossOrigin
 @RequestMapping("/api/favorites")
 public class FavoriteController {
 

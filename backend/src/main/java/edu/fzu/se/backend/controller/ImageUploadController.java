@@ -19,6 +19,7 @@ import java.util.List;
 @Tag(name = "ImageUploadController", description = "图片上传控制器")
 @RestController
 @Slf4j
+@CrossOrigin
 @RequestMapping("/api/upload")
 public class ImageUploadController {
     @Autowired

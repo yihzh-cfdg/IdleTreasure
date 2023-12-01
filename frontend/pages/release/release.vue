@@ -102,6 +102,17 @@
 			};
 		},
 		methods: {
+			clear(){
+				this.goodId= 0;
+				this.count= 4;
+				this.imgList= [];
+				this.tempImgList= [];
+				this.releaseText= "";
+				this.price= "0.00";
+				this.deliveryMethodIndex= 0;
+				this.shippingfee= "10.00";
+				this.selectedCategory= '请选择分类';
+			},
 			goBack() {
 				// uni.navigateBack();
 			},
@@ -192,6 +203,7 @@
 									icon: "success",
 									title: "图片上传成功"
 								});
+								this.clear();
 								uni.switchTab({
 									url: "/pages/user/user"
 								});
