@@ -267,7 +267,7 @@
 	/*固定结算部分*/
 	.total {
 		position: fixed;
-		bottom: 0;
+		bottom: 50px;
 		/* 距离底部的距离 */
 		height: 60px;
 		left: 0;

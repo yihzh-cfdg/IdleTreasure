@@ -199,7 +199,7 @@
 					if (order.transactionStatus == "已售出") {
 						order.orderid = order.tradesID;
 						uni.navigateTo({
-							url: '/pages/order/orderdetail?type=idtradeid=' + order.orderid,
+							url: '/pages/order/orderdetail?type=id&tradeid=' + order.orderid,
 						});
 					} else {
 						uni.navigateTo({
@@ -210,7 +210,7 @@
 
 				} else {
 					uni.navigateTo({
-						url: '/pages/order/orderdetail?type=idtradeid=' + order.orderid,
+						url: '/pages/order/orderdetail?type=id&tradeid=' + order.orderid,
 					});
 				}
 

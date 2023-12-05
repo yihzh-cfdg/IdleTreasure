@@ -6,8 +6,8 @@ const store = new Vuex.Store({
 	state: {
 		userInfo: {},
 		hasLogin: false,
-		// baseUrl: "http://47.110.148.166:8085",
-		baseUrl: "http://localhost:8083",
+		baseUrl: "http://47.110.148.166:8085",
+		// baseUrl: "http://localhost:8083",
 		hasInfo: false,
 		token: 100000001,
 	},

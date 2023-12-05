@@ -203,25 +203,6 @@
 				})
 			}
 		},
-		onShow: function(opt) {
-			if (opt.type == 'json') {
-				const order = JSON.parse(decodeURIComponent(opt.order));
-				this.setInfo(order);
-			} else if (opt.type == "id") {
-				const tradeid = opt.tradeid;
-				uni.request({
-					url: this.$store.state.baseUrl + "/api/trades/id",
-					data: {
-						tradeID: tradeid,
-						userID: this.$store.state.token
-					},
-					success: (res) => {
-						const order = res.data.data;
-						this.setInfo(order);
-					},
-				})
-			}
-		},
 		methods: {
 			setInfo(order) {
 				this.type = order.type;

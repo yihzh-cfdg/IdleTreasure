@@ -91,9 +91,6 @@
 				this.loadList();
 			},
 			search(value) {
-				if (!value) {
-					return;
-				}
 				if (value) {
 					if (this.searchText !== value)
 						this.searchText = value;
@@ -154,7 +151,6 @@
 			},
 			loadList(text = '') {
 				getApp().globalData.searchText = text;
-				uni.navigateBack()
 			}
 		},
 	}
